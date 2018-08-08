@@ -7,7 +7,7 @@ use App\Models\OutcomeIndicator;
 use App\Models\Output;
 use Illuminate\Http\Resources\Json\Resource;
 
-class OutcomeResource extends Resource
+class OutcomesResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -20,12 +20,11 @@ class OutcomeResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'outcomes' => Outcome::where('parent_id', $this->id)->get(),
+            'outputs' => Output::where('outcome_id', $this->id)->get(),
             'indicators' => OutcomeIndicator::join('outcomes', 'outcomes.id', '=', 'outcome_indicators.outcome_id')
                 ->join('indicators', 'indicators.id','=','outcome_indicators.indicator_id')
                 ->select(['indicators.id','indicators.name','indicators.description'])
-                ->where('outcomes.id',$this->id)->get(),
-            'outputs' => Output::where(['outcome_id' => $this->id, 'parent_id' => 0])->get(),
+                ->where('outcomes.id',$this->id)->get()
         ];
     }
 }

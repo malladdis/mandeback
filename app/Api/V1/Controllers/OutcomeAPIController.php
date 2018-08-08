@@ -4,6 +4,7 @@ namespace App\Api\V1\Controllers;
 
 use App\Http\Requests\API\CreateOutcomeAPIRequest;
 use App\Http\Requests\API\UpdateOutcomeAPIRequest;
+use App\Http\Resources\OutcomeResource;
 use App\Models\Outcome;
 use App\Repositories\OutcomeRepository;
 use Illuminate\Http\Request;
@@ -71,13 +72,13 @@ class OutcomeAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Outcome $outcome */
-        $outcome = $this->outcomeRepository->findWithoutFail($id);
+        $outcome = new OutcomeResource(Outcome::find($id));
 
         if (empty($outcome)) {
             return $this->sendError('Outcome not found');
         }
 
-        return $this->sendResponse($outcome->toArray(), 'Outcome retrieved successfully');
+        return $this->sendResponse($outcome, 'Outcome retrieved successfully');
     }
 
     /**

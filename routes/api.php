@@ -36,9 +36,14 @@ $api->version('v1', function (Router $api) {
         $api->resource('frequencies', 'App\\Api\\V1\\Controllers\\FrequencyAPIController');
         $api->resource('project_beneficiaries', 'App\\Api\\V1\\Controllers\\ProjectBeneficiaryAPIController');
         $api->resource('project_implementers', 'App\\Api\\V1\\Controllers\\ProjectImplementerAPIController');
-        $api->resource('outcomes', 'App\\Api\\V1\\Controllers\\OutcomeAPIController');
         $api->resource('project_frequencies', 'App\\Api\\V1\\Controllers\\ProjectFrequencyAPIController');
         $api->resource('statuses', 'App\\Api\\V1\\Controllers\\StatusAPIController');
+        $api->resource('outcomes', 'App\\Api\\V1\\Controllers\\OutcomeAPIController');
+        $api->resource('outputs', 'App\\Api\\V1\\Controllers\\OutputAPIController');
+        $api->resource('indicators', 'App\\Api\\V1\\Controllers\\IndicatorAPIController');
+        $api->resource('outcome_indicators', 'App\\Api\\V1\\Controllers\\OutcomeIndicatorAPIController');
+        $api->resource('output_indicators', 'App\\Api\\V1\\Controllers\\OutputIndicatorAPIController');
+        $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');
         $api->get('refresh', function(){
             $token = auth()->guard()->refresh();
             return response()->json([

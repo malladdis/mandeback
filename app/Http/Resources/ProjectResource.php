@@ -32,7 +32,7 @@ class ProjectResource extends Resource
             'details' => new ProjectDetailResource(ProjectDetail::where('project_id', $this->id)->get()[0]),
             'beneficiary' => ProjectBeneficiaryResource::collection(ProjectBeneficiary::where('project_id', $this->id)->get()),
             'implementer' => ProjectImplementerResource::collection(ProjectImplementer::where('project_id', $this->id)->get()),
-            'outcomes' => OutcomeResource::collection(Outcome::where('project_id', $this->id)->get()),
+            'outcomes' => Outcome::where(['project_id' => $this->id, 'parent_id' => 0])->get(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at
