@@ -21,6 +21,7 @@ class OutcomeRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'project_id',
+        'type_id',
         'name',
         'description',
         'parent_id'

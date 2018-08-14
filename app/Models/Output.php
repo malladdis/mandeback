@@ -28,6 +28,7 @@ class Output extends Model
     public $fillable = [
         'name',
         'description',
+        'type_id',
         'outcome_id',
         'parent_id'
     ];
@@ -41,6 +42,7 @@ class Output extends Model
         'name' => 'string',
         'description' => 'string',
         'outcome_id' => 'integer',
+        'type_id' => 'integer',
         'parent_id' => 'integer'
     ];
 
@@ -52,6 +54,7 @@ class Output extends Model
     public static $rules = [
         'name' => 'required',
         'outcome_id' => 'required',
+        'type_id' => 'required',
         'parent_id' => 'required'
     ];
 

@@ -27,6 +27,7 @@ class Outcome extends Model
 
     public $fillable = [
         'project_id',
+        'type_id',
         'name',
         'description',
         'parent_id'
@@ -39,6 +40,7 @@ class Outcome extends Model
      */
     protected $casts = [
         'project_id' => 'integer',
+        'type_id' => 'integer',
         'name' => 'string',
         'description' => 'string',
         'parent_id' => 'integer'
@@ -51,6 +53,7 @@ class Outcome extends Model
      */
     public static $rules = [
         'project_id' => 'required',
+        'type_id' => 'required',
         'name' => 'required',
         'parent_id' => 'required'
     ];

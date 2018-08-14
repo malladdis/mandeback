@@ -43,6 +43,7 @@ $api->version('v1', function (Router $api) {
         $api->resource('indicators', 'App\\Api\\V1\\Controllers\\IndicatorAPIController');
         $api->resource('outcome_indicators', 'App\\Api\\V1\\Controllers\\OutcomeIndicatorAPIController');
         $api->resource('output_indicators', 'App\\Api\\V1\\Controllers\\OutputIndicatorAPIController');
+        $api->resource('time_plans', 'App\\Api\\V1\\Controllers\\TimePlanAPIController');
         $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');
         $api->get('refresh', function(){
             $token = auth()->guard()->refresh();

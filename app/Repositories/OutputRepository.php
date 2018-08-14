@@ -22,6 +22,7 @@ class OutputRepository extends BaseRepository
     protected $fieldSearchable = [
         'name',
         'description',
+        'type_id',
         'outcome_id',
         'parent_id'
     ];

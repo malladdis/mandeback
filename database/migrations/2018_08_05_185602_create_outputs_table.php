@@ -16,6 +16,7 @@ class CreateOutputsTable extends Migration
         Schema::create('outputs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('type_id');
             $table->text('description');
             $table->integer('outcome_id');
             $table->integer('parent_id');
