@@ -17,9 +17,9 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('output_id');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('status_id');
-            $table->integer('category_id');
+            $table->integer('activity_category_id');
             $table->integer('kebele_id');
             $table->string('start_date');
             $table->string('end_date');

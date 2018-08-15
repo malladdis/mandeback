@@ -45,6 +45,10 @@ $api->version('v1', function (Router $api) {
         $api->resource('output_indicators', 'App\\Api\\V1\\Controllers\\OutputIndicatorAPIController');
         $api->resource('time_plans', 'App\\Api\\V1\\Controllers\\TimePlanAPIController');
         $api->resource('data_types', 'App\\Api\\V1\\Controllers\\DataTypeAPIController');
+        $api->resource('measuring_units', 'App\\Api\\V1\\Controllers\\MeasuringUnitAPIController');
+        $api->resource('activities', 'App\\Api\\V1\\Controllers\\ActivityAPIController');
+        $api->resource('activity_budgets', 'App\\Api\\V1\\Controllers\\ActivityBudgetAPIController');
+        $api->resource('activity_categories', 'App\\Api\\V1\\Controllers\\ActivityCategoryAPIController');
         $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');
         $api->get('refresh', function(){
             $token = auth()->guard()->refresh();
@@ -57,8 +61,3 @@ $api->version('v1', function (Router $api) {
     });
 
 });
-
-
-Route::resource('measuring_units', 'MeasuringUnitAPIController');
-
-Route::resource('activities', 'ActivityAPIController');
