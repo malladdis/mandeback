@@ -14,7 +14,7 @@ use Response;
 
 /**
  * Class ZoneController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class ZoneAPIController extends AppBaseController

@@ -14,7 +14,7 @@ use Response;
 
 /**
  * Class BeneficiaryController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class BeneficiaryAPIController extends AppBaseController

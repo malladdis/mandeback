@@ -14,7 +14,7 @@ use Response;
 
 /**
  * Class ImplementerController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class ImplementerAPIController extends AppBaseController

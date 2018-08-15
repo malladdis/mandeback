@@ -15,7 +15,7 @@ use Response;
 
 /**
  * Class ProjectController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class ProjectAPIController extends AppBaseController

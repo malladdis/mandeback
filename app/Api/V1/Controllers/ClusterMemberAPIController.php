@@ -14,7 +14,7 @@ use Response;
 
 /**
  * Class ClusterMemberController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class ClusterMemberAPIController extends AppBaseController

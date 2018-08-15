@@ -15,7 +15,7 @@ use Response;
 
 /**
  * Class OutputController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class OutputAPIController extends AppBaseController
@@ -34,6 +34,7 @@ class OutputAPIController extends AppBaseController
      *
      * @param Request $request
      * @return Response
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function index(Request $request)
     {

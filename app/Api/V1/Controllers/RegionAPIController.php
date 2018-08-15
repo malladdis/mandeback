@@ -14,7 +14,7 @@ use Response;
 
 /**
  * Class RegionController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class RegionAPIController extends AppBaseController

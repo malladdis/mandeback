@@ -14,7 +14,7 @@ use Response;
 
 /**
  * Class OutputIndicatorController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class OutputIndicatorAPIController extends AppBaseController
@@ -33,6 +33,7 @@ class OutputIndicatorAPIController extends AppBaseController
      *
      * @param Request $request
      * @return Response
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function index(Request $request)
     {

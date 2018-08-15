@@ -14,7 +14,7 @@ use Illuminate\Http\Response;
 
 /**
  * Class ProgramController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class ProgramAPIController extends AppBaseController

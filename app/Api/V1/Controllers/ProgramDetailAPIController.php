@@ -14,7 +14,7 @@ use Response;
 
 /**
  * Class ProgramDetailController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class ProgramDetailAPIController extends AppBaseController

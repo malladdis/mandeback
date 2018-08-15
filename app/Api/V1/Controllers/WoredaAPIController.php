@@ -14,7 +14,7 @@ use Response;
 
 /**
  * Class WoredaController
- * @package App\Http\Controllers\API
+ * @package App\Api\V1\Controllers
  */
 
 class WoredaAPIController extends AppBaseController
