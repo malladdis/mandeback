@@ -21,7 +21,14 @@ class IndicatorRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'name',
-        'description'
+        'description',
+        'type_id',
+        'measuring_unit_id',
+        'frequency_id',
+        'baseline_value',
+        'source',
+        'target_value',
+        'is_total'
     ];
 
     /**

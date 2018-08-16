@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateIndicatorsTable extends Migration
+class CreateIndicatorFormsTable extends Migration
 {
 
     /**
@@ -13,10 +13,10 @@ class CreateIndicatorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('indicators', function (Blueprint $table) {
+        Schema::create('indicator_forms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
+            $table->integer('indicator_id');
+            $table->integer('form_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ class CreateIndicatorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('indicators');
+        Schema::drop('indicator_forms');
     }
 }

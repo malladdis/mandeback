@@ -25,7 +25,14 @@ class Indicator extends Model
 
     public $fillable = [
         'name',
-        'description'
+        'description',
+        'type_id',
+        'measuring_unit_id',
+        'frequency_id',
+        'baseline_value',
+        'source',
+        'target_value',
+        'is_total'
     ];
 
     /**
@@ -35,7 +42,14 @@ class Indicator extends Model
      */
     protected $casts = [
         'name' => 'string',
-        'description' => 'string'
+        'description' => 'string',
+        'type_id' => 'integer',
+        'measuring_unit_id' => 'integer',
+        'frequency_id' => 'integer',
+        'baseline_value' => 'double',
+        'source' => 'string',
+        'target_value' => 'double',
+        'is_total' => 'boolean'
     ];
 
     /**
@@ -44,7 +58,13 @@ class Indicator extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'type_id' => 'required',
+        'measuring_unit_id' => 'required',
+        'frequency_id' => 'required',
+        'baseline_value' => 'required',
+        'target_value' => 'required',
+        'is_total' => 'required'
     ];
 
     
