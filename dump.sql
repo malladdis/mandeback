@@ -1,19 +1,137 @@
--- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
+-- MySQL dump 10.16  Distrib 10.1.29-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: 127.0.0.1    Database: mande
 -- ------------------------------------------------------
--- Server version	5.7.23-0ubuntu0.16.04.1
+-- Server version	10.1.29-MariaDB-6
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `activities`
+--
+
+DROP TABLE IF EXISTS `activities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `activities` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `output_id` int(11) NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `status_id` int(11) NOT NULL,
+  `activity_category_id` int(11) NOT NULL,
+  `kebele_id` int(11) NOT NULL,
+  `start_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `end_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `implementing_partners` text COLLATE utf8_unicode_ci NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activities`
+--
+
+LOCK TABLES `activities` WRITE;
+/*!40000 ALTER TABLE `activities` DISABLE KEYS */;
+INSERT INTO `activities` VALUES (1,'1.Strengthened local Institutions (FTCS)',1,NULL,2,1,1,'2018-08-16T23:00:00.000Z','2018-08-30T23:00:00.000Z','[{id: 1, name: Vita},{id: 2, name: IDE}]',0,'2018-08-17 20:39:35','2018-08-17 20:39:35',NULL),(2,'1.1 xxxxxxxxxx',1,NULL,2,1,1,'2018-08-16T23:00:00.000Z','2018-08-30T23:00:00.000Z','[{id: 2, name: IDE}]',1,'2018-08-17 21:42:28','2018-08-17 21:42:28',NULL);
+/*!40000 ALTER TABLE `activities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `activity_budgets`
+--
+
+DROP TABLE IF EXISTS `activity_budgets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `activity_budgets` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `activity_id` int(11) NOT NULL,
+  `amount` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activity_budgets`
+--
+
+LOCK TABLES `activity_budgets` WRITE;
+/*!40000 ALTER TABLE `activity_budgets` DISABLE KEYS */;
+INSERT INTO `activity_budgets` VALUES (1,1,20000,'2018-08-17 20:39:35','2018-08-17 20:39:35',NULL),(2,2,1000,'2018-08-17 21:42:28','2018-08-17 21:42:28',NULL);
+/*!40000 ALTER TABLE `activity_budgets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `activity_categories`
+--
+
+DROP TABLE IF EXISTS `activity_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `activity_categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activity_categories`
+--
+
+LOCK TABLES `activity_categories` WRITE;
+/*!40000 ALTER TABLE `activity_categories` DISABLE KEYS */;
+INSERT INTO `activity_categories` VALUES (1,'Training','2018-08-17 15:36:55','2018-08-17 15:36:58',NULL);
+/*!40000 ALTER TABLE `activity_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `activity_indicators`
+--
+
+DROP TABLE IF EXISTS `activity_indicators`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `activity_indicators` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `activity_id` int(11) NOT NULL,
+  `indicator_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activity_indicators`
+--
+
+LOCK TABLES `activity_indicators` WRITE;
+/*!40000 ALTER TABLE `activity_indicators` DISABLE KEYS */;
+/*!40000 ALTER TABLE `activity_indicators` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `beneficiaries`
@@ -100,6 +218,60 @@ INSERT INTO `clusters` VALUES (8,'South Omo',NULL,'2018-08-01 22:33:25','2018-08
 UNLOCK TABLES;
 
 --
+-- Table structure for table `data_types`
+--
+
+DROP TABLE IF EXISTS `data_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `data_types` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `data_types`
+--
+
+LOCK TABLES `data_types` WRITE;
+/*!40000 ALTER TABLE `data_types` DISABLE KEYS */;
+INSERT INTO `data_types` VALUES (1,'Quantitative','2018-08-16 14:12:32','2018-08-16 14:12:34',NULL),(2,'Qualitative','2018-08-16 14:12:45','2018-08-16 14:12:47',NULL);
+/*!40000 ALTER TABLE `data_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `disaggregation_methods`
+--
+
+DROP TABLE IF EXISTS `disaggregation_methods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `disaggregation_methods` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `disaggregation_methods`
+--
+
+LOCK TABLES `disaggregation_methods` WRITE;
+/*!40000 ALTER TABLE `disaggregation_methods` DISABLE KEYS */;
+INSERT INTO `disaggregation_methods` VALUES (1,'Gender','2018-08-16 14:13:23','2018-08-16 14:13:27',NULL),(2,'Age','2018-08-16 14:28:46','2018-08-16 14:28:49',NULL),(3,'Disable','2018-08-16 14:28:47','2018-08-16 14:28:51',NULL);
+/*!40000 ALTER TABLE `disaggregation_methods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `frequencies`
 --
 
@@ -155,6 +327,60 @@ INSERT INTO `implementers` VALUES (1,'Vita',NULL,'2018-08-02 05:38:52','2018-08-
 UNLOCK TABLES;
 
 --
+-- Table structure for table `indicator_disaggregation_methods`
+--
+
+DROP TABLE IF EXISTS `indicator_disaggregation_methods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `indicator_disaggregation_methods` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `indicator_id` int(11) NOT NULL,
+  `disaggregation_method_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `indicator_disaggregation_methods`
+--
+
+LOCK TABLES `indicator_disaggregation_methods` WRITE;
+/*!40000 ALTER TABLE `indicator_disaggregation_methods` DISABLE KEYS */;
+/*!40000 ALTER TABLE `indicator_disaggregation_methods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `indicator_forms`
+--
+
+DROP TABLE IF EXISTS `indicator_forms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `indicator_forms` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `indicator_id` int(11) NOT NULL,
+  `form_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `indicator_forms`
+--
+
+LOCK TABLES `indicator_forms` WRITE;
+/*!40000 ALTER TABLE `indicator_forms` DISABLE KEYS */;
+/*!40000 ALTER TABLE `indicator_forms` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `indicators`
 --
 
@@ -165,11 +391,18 @@ CREATE TABLE `indicators` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
+  `type_id` int(11) NOT NULL,
+  `measuring_unit_id` int(11) NOT NULL,
+  `frequency_id` int(11) NOT NULL,
+  `baseline_value` double NOT NULL,
+  `source` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `target_value` double NOT NULL,
+  `is_total` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +411,7 @@ CREATE TABLE `indicators` (
 
 LOCK TABLES `indicators` WRITE;
 /*!40000 ALTER TABLE `indicators` DISABLE KEYS */;
-INSERT INTO `indicators` VALUES (1,'1.1 Number of farmers with improved knowledge of agronomic practices',NULL,'2018-08-06 17:33:50','2018-08-06 17:33:52',NULL),(2,'1.1.1 Kg of vegetable seed distributed',NULL,'2018-08-07 08:24:51','2018-08-07 08:24:52',NULL),(3,'1.2 xxxxxxxxxxxxxxx',NULL,'2018-08-11 08:11:53','2018-08-11 08:11:55',NULL);
+INSERT INTO `indicators` VALUES (3,'1.1 Quinteal of high value crops distributed',NULL,1,1,1,1,'fdsfafa',20,1,'2018-08-17 13:29:18','2018-08-17 13:29:18',NULL),(4,'1.1.1 Number of farmers with improved knowledge of agronomic practices',NULL,1,1,1,1,'dsada',20,1,'2018-08-17 13:47:40','2018-08-17 13:47:40',NULL);
 /*!40000 ALTER TABLE `indicators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,6 +444,33 @@ INSERT INTO `kebeles` VALUES (1,4,'Ariyakayisa','2018-08-01 21:44:52','2018-08-0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `measuring_units`
+--
+
+DROP TABLE IF EXISTS `measuring_units`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `measuring_units` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `measuring_units`
+--
+
+LOCK TABLES `measuring_units` WRITE;
+/*!40000 ALTER TABLE `measuring_units` DISABLE KEYS */;
+INSERT INTO `measuring_units` VALUES (1,'percentage','2018-08-16 14:16:19','2018-08-16 14:16:20',NULL);
+/*!40000 ALTER TABLE `measuring_units` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -222,7 +482,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +491,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (23,'2014_10_12_000000_create_users_table',1),(24,'2014_10_12_100000_create_password_resets_table',1),(25,'2018_07_29_143820_create_program_categories_table',1),(26,'2018_07_29_150330_create_programs_table',1),(27,'2018_07_29_153504_create_project_categories_table',1),(28,'2018_07_29_154248_create_projects_table',1),(29,'2018_07_29_231032_create_program_details_table',1),(30,'2018_07_31_155403_create_project_details_table',1),(31,'2018_07_31_155648_create_implementers_table',1),(32,'2018_07_31_155855_create_beneficiaries_table',1),(33,'2018_07_31_160433_create_clusters_table',1),(34,'2018_07_31_160717_create_cluster_members_table',1),(35,'2018_07_31_162115_create_regions_table',1),(36,'2018_07_31_162152_create_zones_table',1),(37,'2018_07_31_162338_create_woredas_table',1),(38,'2018_08_01_183524_create_kebeles_table',1),(39,'2018_08_02_192122_create_frequencies_table',1),(40,'2018_08_03_084016_create_project_beneficiaries_table',1),(41,'2018_08_03_084130_create_project_implementers_table',1),(42,'2018_08_03_092952_create_outcomes_table',1),(43,'2018_08_03_123232_create_project_frequencies_table',1),(44,'2018_08_03_144511_create_statuses_table',1),(45,'2018_08_05_185602_create_outputs_table',2),(46,'2018_08_06_172823_create_indicators_table',3),(47,'2018_08_06_173627_create_outcome_indicators_table',4),(48,'2018_08_07_080827_create_output_indicators_table',5),(49,'2018_08_10_082327_create_time_plans_table',6);
+INSERT INTO `migrations` VALUES (23,'2014_10_12_000000_create_users_table',1),(24,'2014_10_12_100000_create_password_resets_table',1),(25,'2018_07_29_143820_create_program_categories_table',1),(26,'2018_07_29_150330_create_programs_table',1),(27,'2018_07_29_153504_create_project_categories_table',1),(28,'2018_07_29_154248_create_projects_table',1),(29,'2018_07_29_231032_create_program_details_table',1),(30,'2018_07_31_155403_create_project_details_table',1),(31,'2018_07_31_155648_create_implementers_table',1),(32,'2018_07_31_155855_create_beneficiaries_table',1),(33,'2018_07_31_160433_create_clusters_table',1),(34,'2018_07_31_160717_create_cluster_members_table',1),(35,'2018_07_31_162115_create_regions_table',1),(36,'2018_07_31_162152_create_zones_table',1),(37,'2018_07_31_162338_create_woredas_table',1),(38,'2018_08_01_183524_create_kebeles_table',1),(39,'2018_08_02_192122_create_frequencies_table',1),(40,'2018_08_03_084016_create_project_beneficiaries_table',1),(41,'2018_08_03_084130_create_project_implementers_table',1),(42,'2018_08_03_092952_create_outcomes_table',1),(43,'2018_08_03_123232_create_project_frequencies_table',1),(44,'2018_08_03_144511_create_statuses_table',1),(45,'2018_08_05_185602_create_outputs_table',2),(47,'2018_08_06_173627_create_outcome_indicators_table',4),(48,'2018_08_07_080827_create_output_indicators_table',5),(49,'2018_08_10_082327_create_time_plans_table',6),(50,'2018_08_15_132248_create_data_types_table',7),(51,'2018_08_15_132534_create_measuring_units_table',8),(52,'2018_08_15_185722_create_activities_table',9),(53,'2018_08_15_192046_create_activity_budgets_table',10),(54,'2018_08_15_192111_create_activity_categories_table',11),(55,'2018_08_16_100000_create_indicators_table',12),(56,'2018_08_16_142605_create_disaggregation_methods_table',13),(57,'2018_08_16_142729_create_indicator_disaggregation_methods_table',14),(58,'2018_08_16_142946_create_indicator_forms_table',15),(59,'2018_08_17_223225_create_activity_indicators_table',16);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +510,7 @@ CREATE TABLE `outcome_indicators` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +519,7 @@ CREATE TABLE `outcome_indicators` (
 
 LOCK TABLES `outcome_indicators` WRITE;
 /*!40000 ALTER TABLE `outcome_indicators` DISABLE KEYS */;
-INSERT INTO `outcome_indicators` VALUES (1,1,1,'2018-08-06 17:37:10','2018-08-06 17:37:13',NULL),(2,1,3,'2018-08-11 08:12:23','2018-08-11 08:12:25',NULL);
+INSERT INTO `outcome_indicators` VALUES (1,1,3,'2018-08-17 13:29:18','2018-08-17 13:29:18',NULL);
 /*!40000 ALTER TABLE `outcome_indicators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,7 +578,7 @@ CREATE TABLE `output_indicators` (
 
 LOCK TABLES `output_indicators` WRITE;
 /*!40000 ALTER TABLE `output_indicators` DISABLE KEYS */;
-INSERT INTO `output_indicators` VALUES (1,1,2,'2018-08-07 08:26:09','2018-08-07 08:26:11',NULL);
+INSERT INTO `output_indicators` VALUES (1,1,4,'2018-08-17 13:47:40','2018-08-17 13:47:40',NULL);
 /*!40000 ALTER TABLE `output_indicators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,7 +600,7 @@ CREATE TABLE `outputs` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,7 +609,7 @@ CREATE TABLE `outputs` (
 
 LOCK TABLES `outputs` WRITE;
 /*!40000 ALTER TABLE `outputs` DISABLE KEYS */;
-INSERT INTO `outputs` VALUES (1,'1.1 Increased Adoption of Agricultural Technologies & Practices',NULL,1,1,0,'2018-08-05 19:05:56','2018-08-05 19:05:58',NULL),(2,'1.2 Increased Access to Agricultural Inputs & Services (research, extension, coop services)',NULL,1,1,1,'2018-08-05 20:19:23','2018-08-05 20:19:25',NULL);
+INSERT INTO `outputs` VALUES (1,'1.1 Increased Adoption of Agricultural Technologies & Practices',NULL,1,1,0,'2018-08-05 19:05:56','2018-08-05 19:05:58',NULL),(2,'1.2 Increased Access to Agricultural Inputs & Services (research, extension, coop services)',NULL,1,1,1,'2018-08-05 20:19:23','2018-08-05 20:19:25',NULL),(3,' of HH with improved  knowledge, and practice in dietary diversification in target area',NULL,1,1,0,'2018-08-17 14:22:06','2018-08-17 14:22:06',NULL),(4,'1.2.1 xxxxxxxxxxxxxx',NULL,1,3,3,'2018-08-17 14:26:42','2018-08-17 14:26:42',NULL);
 /*!40000 ALTER TABLE `outputs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -821,4 +1081,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-14 15:01:24
+-- Dump completed on 2018-08-18  0:44:55

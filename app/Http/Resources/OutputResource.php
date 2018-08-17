@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Activity;
 use App\Models\Output;
 use App\Models\OutputIndicator;
 use Illuminate\Http\Resources\Json\Resource;
@@ -23,7 +24,8 @@ class OutputResource extends Resource
             'indicators' => OutputIndicator::join('outputs', 'outputs.id', '=', 'output_indicators.output_id')
                 ->join('indicators', 'indicators.id','=','output_indicators.indicator_id')
                 ->select(['indicators.id','indicators.name','indicators.description'])
-                ->where('outputs.id', $this->id)->get()
+                ->where('outputs.id', $this->id)->get(),
+            'activities' => Activity::where(['output_id' => $this->id, 'parent_id' => 0])->get()
         ];
     }
 }

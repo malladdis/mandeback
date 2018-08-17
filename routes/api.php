@@ -52,6 +52,7 @@ $api->version('v1', function (Router $api) {
         $api->resource('disaggregation_methods', 'App\\Api\\V1\\Controllers\\DisaggregationMethodAPIController');
         $api->resource('indicator_disaggregation_methods', 'App\\Api\\V1\\Controllers\\IndicatorDisaggregationMethodAPIController');
         $api->resource('indicator_forms', 'App\\Api\\V1\\Controllers\\IndicatorFormAPIController');
+        $api->resource('activity_indicators', 'App\\Api\\V1\\Controllers\\ActivityIndicatorAPIController');
         $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');
         $api->get('refresh', function(){
             $token = auth()->guard()->refresh();

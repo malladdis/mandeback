@@ -4,6 +4,7 @@ namespace App\Api\V1\Controllers;
 
 use App\Http\Requests\API\CreateActivityAPIRequest;
 use App\Http\Requests\API\UpdateActivityAPIRequest;
+use App\Http\Resources\ActivityResource;
 use App\Models\Activity;
 use App\Repositories\ActivityRepository;
 use Illuminate\Http\Request;
@@ -72,13 +73,13 @@ class ActivityAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Activity $activity */
-        $activity = $this->activityRepository->findWithoutFail($id);
+        $activity = new ActivityResource($this->activityRepository->findWithoutFail($id));
 
         if (empty($activity)) {
             return $this->sendError('Activity not found');
         }
 
-        return $this->sendResponse($activity->toArray(), 'Activity retrieved successfully');
+        return $this->sendResponse($activity, 'Activity retrieved successfully');
     }
 
     /**
