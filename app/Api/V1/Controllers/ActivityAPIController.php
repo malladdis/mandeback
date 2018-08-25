@@ -40,9 +40,9 @@ class ActivityAPIController extends AppBaseController
     {
         $this->activityRepository->pushCriteria(new RequestCriteria($request));
         $this->activityRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $activities = $this->activityRepository->all();
+        $activities = ActivityResource::collection($this->activityRepository->all());
 
-        return $this->sendResponse($activities->toArray(), 'Activities retrieved successfully');
+        return $this->sendResponse($activities, 'Activities retrieved successfully');
     }
 
     /**

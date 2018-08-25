@@ -53,6 +53,9 @@ $api->version('v1', function (Router $api) {
         $api->resource('indicator_disaggregation_methods', 'App\\Api\\V1\\Controllers\\IndicatorDisaggregationMethodAPIController');
         $api->resource('indicator_forms', 'App\\Api\\V1\\Controllers\\IndicatorFormAPIController');
         $api->resource('activity_indicators', 'App\\Api\\V1\\Controllers\\ActivityIndicatorAPIController');
+        $api->resource('budgets', 'App\\Api\\V1\\Controllers\\BudgetAPIController');
+        $api->resource('expenditure_categories', 'App\\Api\\V1\\Controllers\\ExpenditureCategoryAPIController');
+        $api->resource('expenditures', 'App\\Api\\V1\\Controllers\\ExpenditureAPIController');
         $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');
         $api->get('refresh', function(){
             $token = auth()->guard()->refresh();
