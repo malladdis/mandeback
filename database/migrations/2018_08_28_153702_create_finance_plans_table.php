@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateExpendituresTable extends Migration
+class CreateFinancePlansTable extends Migration
 {
 
     /**
@@ -13,10 +13,11 @@ class CreateExpendituresTable extends Migration
      */
     public function up()
     {
-        Schema::create('expenditures', function (Blueprint $table) {
+        Schema::create('finance_plans', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('expenditure_category_id');
+            $table->integer('finance_id');
             $table->string('name');
+            $table->double('value');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ class CreateExpendituresTable extends Migration
      */
     public function down()
     {
-        Schema::drop('expenditures');
+        Schema::drop('finance_plans');
     }
 }

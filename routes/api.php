@@ -56,6 +56,11 @@ $api->version('v1', function (Router $api) {
         $api->resource('budgets', 'App\\Api\\V1\\Controllers\\BudgetAPIController');
         $api->resource('expenditure_categories', 'App\\Api\\V1\\Controllers\\ExpenditureCategoryAPIController');
         $api->resource('expenditures', 'App\\Api\\V1\\Controllers\\ExpenditureAPIController');
+        $api->resource('finance_plans', 'App\\Api\\V1\\Controllers\\FinancePlanAPIController');
+        $api->resource('monthly_expenditures', 'App\\Api\\V1\\Controllers\\MonthlyExpenditureAPIController');
+        $api->resource('finances', 'App\\Api\\V1\\Controllers\\FinanceAPIController');
+        $api->resource('donors', 'App\\Api\\V1\\Controllers\\DonorAPIController');
+        $api->resource('currencies', 'App\\Api\\V1\\Controllers\\CurrencyAPIController');
         $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');
         $api->get('refresh', function(){
             $token = auth()->guard()->refresh();
