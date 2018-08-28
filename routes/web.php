@@ -17,8 +17,11 @@ Route::get('reset_password/{token}', ['as' => 'password.reset', function($token)
 }]);
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('http://localhost:4200');
 });
 
 
 Route::resource('migration]s', 'migration]Controller');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

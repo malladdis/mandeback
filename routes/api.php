@@ -62,6 +62,26 @@ $api->version('v1', function (Router $api) {
         $api->resource('donors', 'App\\Api\\V1\\Controllers\\DonorAPIController');
         $api->resource('currencies', 'App\\Api\\V1\\Controllers\\CurrencyAPIController');
         $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');
+
+        //meseret's routing
+        $api->resource('users','App\\Api\\V1\\Controllers\\UserController');
+        $api->resource('forms','App\\Api\\V1\\Controllers\\FormController');
+        $api->resource('form-sections','App\\Api\\V1\\Controllers\\FormSectionController');
+        $api->resource('generated-forms','App\\Api\\V1\\Controllers\\GeneratedFormController');
+        $api->resource('form-columns','App\\Api\\V1\\Controllers\\FormsColumnController');
+        $api->resource('form-datas','App\\Api\\V1\\Controllers\\FormsDataController');
+        $api->resource('shared-forms','App\\Api\\V1\\Controllers\\SharedFormController');
+        $api->resource('roles','App\\Api\\V1\\Controllers\\RoleController');
+        $api->resource('role-permissions','App\\Api\\V1\\Controllers\\RolePermissionController');
+        $api->resource('models','App\\Api\\V1\\Controllers\\ModelsController');
+        $api->resource('permissions','App\\Api\\V1\\Controllers\\PermissionController');
+        /* $api->group(['middleware'=>'permission'],function (Router $api){
+            $api->resource('role','App\\Api\\V1\\Controllers\\RoleController');
+            $api->resource('role-permission','App\\Api\\V1\\Controllers\\RolePermissionController');
+        });*/
+        //end of meseret's routing
+
+
         $api->get('refresh', function(){
             $token = auth()->guard()->refresh();
             return response()->json([
@@ -71,5 +91,8 @@ $api->version('v1', function (Router $api) {
             ]);
         });
     });
+
+    $api->resource('form-data-file','App\\Api\\V1\\Controllers\\FormDataFileController');
+    $api->resource('outer','App\\Api\\V1\\Controllers\\OuterDocumentController');
 
 });
