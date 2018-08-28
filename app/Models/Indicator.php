@@ -67,5 +67,9 @@ class Indicator extends Model
         'is_total' => 'required'
     ];
 
+
+    public function type(){
+        return $this->belongsTo(DataType::class);
+    }
     
 }

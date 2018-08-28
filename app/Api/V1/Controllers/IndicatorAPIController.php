@@ -72,7 +72,7 @@ class IndicatorAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Indicator $indicator */
-        $indicator = $this->indicatorRepository->findWithoutFail($id);
+        $indicator = Indicator::where('id',$id)->with('type')->get();
 
         if (empty($indicator)) {
             return $this->sendError('Indicator not found');
