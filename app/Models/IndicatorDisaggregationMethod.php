@@ -48,5 +48,8 @@ class IndicatorDisaggregationMethod extends Model
         'disaggregation_method_id' => 'required'
     ];
 
-    
+
+    public function indicator(){
+        return $this->belongsTo(Indicator::class);
+    }
 }

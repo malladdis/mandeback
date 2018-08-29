@@ -71,5 +71,17 @@ class Indicator extends Model
     public function type(){
         return $this->belongsTo(DataType::class);
     }
+
+    public  function frequency(){
+        return $this->belongsTo(Frequency::class);
+    }
+
+    public function unit(){
+        return $this->belongsTo("App\Models\MeasuringUnit","measuring_unit_id");
+    }
+
+    public function disaggregations(){
+        return $this->hasMany(IndicatorDisaggregationMethod::class);
+    }
     
 }
