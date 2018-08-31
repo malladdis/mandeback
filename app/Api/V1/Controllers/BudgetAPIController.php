@@ -38,7 +38,7 @@ class BudgetAPIController extends AppBaseController
     {
         $this->budgetRepository->pushCriteria(new RequestCriteria($request));
         $this->budgetRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $budgets = $this->budgetRepository->all();
+        $budgets = $this->budgetRepository->with(['donor'])->get();
 
         return $this->sendResponse($budgets->toArray(), 'Budgets retrieved successfully');
     }

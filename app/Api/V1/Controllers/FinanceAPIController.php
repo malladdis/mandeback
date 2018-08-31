@@ -127,4 +127,17 @@ class FinanceAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Finance deleted successfully');
     }
+    /**
+     * get the specified Finance from storage by Project id.
+     * GET|HEAD /project-finance/{id}
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function getFinanceByProject($id)
+    {
+        $finance = Finance::where('project_id', $id)->get();
+        return $this->sendResponse($finance, 'Finance retrieved successfully');
+    }
 }

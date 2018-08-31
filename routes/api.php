@@ -59,6 +59,7 @@ $api->version('v1', function (Router $api) {
         $api->resource('finance_plans', 'App\\Api\\V1\\Controllers\\FinancePlanAPIController');
         $api->resource('monthly_expenditures', 'App\\Api\\V1\\Controllers\\MonthlyExpenditureAPIController');
         $api->resource('finances', 'App\\Api\\V1\\Controllers\\FinanceAPIController');
+        $api->get('project-finance/{id}', 'App\\Api\\V1\\Controllers\\FinanceAPIController@getFinanceByProject');
         $api->resource('donors', 'App\\Api\\V1\\Controllers\\DonorAPIController');
         $api->resource('currencies', 'App\\Api\\V1\\Controllers\\CurrencyAPIController');
         $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');

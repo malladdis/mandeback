@@ -25,6 +25,7 @@ class Budget extends Model
 
 
     public $fillable = [
+        'name',
         'amount',
         'currency_id',
         'donor_id'
@@ -36,8 +37,9 @@ class Budget extends Model
      * @var array
      */
     protected $casts = [
+        'name' => 'string',
         'amount' => 'double',
-        'currency_id' => 'integer',
+        'currency_id' => 'string',
         'donor_id' => 'integer'
     ];
 
@@ -47,10 +49,17 @@ class Budget extends Model
      * @var array
      */
     public static $rules = [
+        'name' => 'required',
         'amount' => 'required',
         'currency_id' => 'required',
         'donor_id' => 'required'
     ];
 
-    
+    /**
+     * @return Donor
+     */
+    public function donor()
+    {
+        return $this->belongsTo(Donor::class);
+    }
 }
