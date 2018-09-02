@@ -44,5 +44,9 @@ class Frequency extends Model
         'name' => 'required'
     ];
 
+    public function indicator(){
+        return $this->hasMany(Indicator::class);
+    }
+
     
 }

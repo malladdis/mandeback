@@ -72,7 +72,7 @@ class IndicatorAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Indicator $indicator */
-        $indicator = Indicator::where('id',$id)->with('type')->with('unit')->with('frequency')->with('disaggregations')->get();
+        $indicator = Indicator::where('id',$id)->with('type')->with('unit')->with('frequency')->with('disaggregations')->with('calculationMethod')->get();
 
         if (empty($indicator)) {
             return $this->sendError('Indicator not found');

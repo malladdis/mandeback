@@ -25,7 +25,9 @@ class IndicatorForm extends Model
 
     public $fillable = [
         'indicator_id',
-        'form_id'
+        'form_id',
+        'calculation_method_id',
+        'value_field_tobe_calculated'
     ];
 
     /**
@@ -35,7 +37,9 @@ class IndicatorForm extends Model
      */
     protected $casts = [
         'indicator_id' => 'integer',
-        'form_id' => 'integer'
+        'form_id' => 'integer',
+        'calculation_method_id'=>'integer',
+        'value_field_tobe_calculated'=>'string'
     ];
 
     /**
@@ -45,7 +49,9 @@ class IndicatorForm extends Model
      */
     public static $rules = [
         'indicator_id' => 'required',
-        'form_id' => 'required'
+        'form_id' => 'required',
+        'calculation_method_id'=>'required',
+        'value_field_tobe_calculated'=>'required'
     ];
 
     

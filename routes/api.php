@@ -71,6 +71,9 @@ $api->version('v1', function (Router $api) {
         $api->resource('models','App\\Api\\V1\\Controllers\\ModelsController');
         $api->resource('permissions','App\\Api\\V1\\Controllers\\PermissionController');
         $api->resource('calculation_methods','App\\Api\\V1\\Controllers\\CalculationMethodController');
+        $api->resource('indicator_calculation_methods','App\\Api\\V1\\Controllers\\IndicatorCalculationMethodController');
+        $api->resource('data_entries','App\\Api\\V1\\Controllers\\DataEntryController');
+        $api->resource('current','App\\Api\\V1\\Controllers\\DatePeriodGeneratorController');
         /* $api->group(['middleware'=>'permission'],function (Router $api){
             $api->resource('role','App\\Api\\V1\\Controllers\\RoleController');
             $api->resource('role-permission','App\\Api\\V1\\Controllers\\RolePermissionController');

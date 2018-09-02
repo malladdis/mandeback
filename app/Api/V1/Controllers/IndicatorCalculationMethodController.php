@@ -2,7 +2,7 @@
 
 namespace App\Api\V1\Controllers;
 
-use App\IndicatorCalculationMethod;
+use App\Models\IndicatorCalculationMethod;
 use Illuminate\Http\Request;
 
 class IndicatorCalculationMethodController extends Controller
@@ -35,7 +35,14 @@ class IndicatorCalculationMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $calculationMethod=new IndicatorCalculationMethod();
+        $calculationMethod->indicator_id=$request->indicator_id;
+        $calculationMethod->calculation_method_id=$request->calculation_method_id;
+        if($calculationMethod->save()){
+            return response()->json(['status'=>true,'message'=>'data successfully saved','data'=>$calculationMethod]);
+        }else{
+            return response()->json(['status'=>false,'message'=>'data is not saved']);
+        }
     }
 
     /**
