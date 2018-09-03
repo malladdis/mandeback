@@ -81,7 +81,7 @@ class Indicator extends Model
     }
 
     public function disaggregations(){
-        return $this->hasMany(IndicatorDisaggregationMethod::class);
+        return $this->hasOne(IndicatorDisaggregationMethod::class);
     }
 
     public function calculationMethod(){

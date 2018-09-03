@@ -16,6 +16,7 @@ class CreateMeasuringUnitsTable extends Migration
         Schema::create('measuring_units', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('symbol');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -50,8 +50,12 @@ class DataEntryController extends Controller
     {
 
         $dateEntry= DataEntry::where('indicator_id',$id)->get();
+        if($dateEntry){
+            return response()->json(['status'=>true,'message'=>'data retrieved successfully','data'=>$dateEntry]);
 
-        return response()->json(['status'=>true,'message'=>'data retrieved successfully','data'=>$dateEntry]);
+        }else{
+            return response()->json(['status'=>false,'message'=>'data is not found','data'=>array()]);
+        }
 
     }
 

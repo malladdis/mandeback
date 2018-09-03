@@ -51,9 +51,16 @@ class IndicatorCalculationMethodController extends Controller
      * @param  \App\IndicatorCalculationMethod  $indicatorCalculationMethod
      * @return \Illuminate\Http\Response
      */
-    public function show(IndicatorCalculationMethod $indicatorCalculationMethod)
+    public function show($id)
     {
-        //
+        $calculationMethod=IndicatorCalculationMethod::where('indicator_id',$id)
+                           ->join('calculation_methods','calculation_methods.id','=','indicator_calculation_methods.calculation_method_id')
+                           ->get();
+        if($calculationMethod){
+            return response()->json(['status'=>true,'message'=>'data is retrieved successfully','data'=>$calculationMethod]);
+        }else{
+            return response()->json(['status'=>false,'message'=>'data is not found']);
+        }
     }
 
     /**
