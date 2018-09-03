@@ -162,6 +162,34 @@ INSERT INTO `beneficiaries` VALUES (1,'Male','','2018-08-02 05:40:55','2018-08-0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `budgets`
+--
+
+DROP TABLE IF EXISTS `budgets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `budgets` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `amount` double NOT NULL,
+  `currency_id` int(11) NOT NULL,
+  `donor_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `budgets`
+--
+
+LOCK TABLES `budgets` WRITE;
+/*!40000 ALTER TABLE `budgets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `budgets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `cluster_members`
 --
 
@@ -269,6 +297,63 @@ LOCK TABLES `disaggregation_methods` WRITE;
 /*!40000 ALTER TABLE `disaggregation_methods` DISABLE KEYS */;
 INSERT INTO `disaggregation_methods` VALUES (1,'Gender','2018-08-16 14:13:23','2018-08-16 14:13:27',NULL),(2,'Age','2018-08-16 14:28:46','2018-08-16 14:28:49',NULL),(3,'Disable','2018-08-16 14:28:47','2018-08-16 14:28:51',NULL);
 /*!40000 ALTER TABLE `disaggregation_methods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `expenditure_categories`
+--
+
+DROP TABLE IF EXISTS `expenditure_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `expenditure_categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `expenditure_categories`
+--
+
+LOCK TABLES `expenditure_categories` WRITE;
+/*!40000 ALTER TABLE `expenditure_categories` DISABLE KEYS */;
+INSERT INTO `expenditure_categories` VALUES (1,'non-personnel expenses','2018-08-25 20:39:45','2018-08-25 20:39:47',NULL),(2,'personnel expenses','2018-08-25 20:40:04','2018-08-25 20:40:06',NULL),(3,'support expenses','2018-08-25 20:40:22','2018-08-25 20:40:25',NULL);
+/*!40000 ALTER TABLE `expenditure_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `expenditures`
+--
+
+DROP TABLE IF EXISTS `expenditures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `expenditures` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL,
+  `expenditure_category_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `amount` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `expenditures`
+--
+
+LOCK TABLES `expenditures` WRITE;
+/*!40000 ALTER TABLE `expenditures` DISABLE KEYS */;
+INSERT INTO `expenditures` VALUES (1,21,1,'Office equipment',2000,'2018-08-25 20:41:35','2018-08-25 20:41:38',NULL),(2,21,1,'cars',20000,'2018-08-25 20:46:17','2018-08-25 20:46:19',NULL),(3,21,2,'Director',10000,'2018-08-25 20:47:17','2018-08-25 20:47:18',NULL);
+/*!40000 ALTER TABLE `expenditures` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -482,7 +567,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -491,7 +576,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (23,'2014_10_12_000000_create_users_table',1),(24,'2014_10_12_100000_create_password_resets_table',1),(25,'2018_07_29_143820_create_program_categories_table',1),(26,'2018_07_29_150330_create_programs_table',1),(27,'2018_07_29_153504_create_project_categories_table',1),(28,'2018_07_29_154248_create_projects_table',1),(29,'2018_07_29_231032_create_program_details_table',1),(30,'2018_07_31_155403_create_project_details_table',1),(31,'2018_07_31_155648_create_implementers_table',1),(32,'2018_07_31_155855_create_beneficiaries_table',1),(33,'2018_07_31_160433_create_clusters_table',1),(34,'2018_07_31_160717_create_cluster_members_table',1),(35,'2018_07_31_162115_create_regions_table',1),(36,'2018_07_31_162152_create_zones_table',1),(37,'2018_07_31_162338_create_woredas_table',1),(38,'2018_08_01_183524_create_kebeles_table',1),(39,'2018_08_02_192122_create_frequencies_table',1),(40,'2018_08_03_084016_create_project_beneficiaries_table',1),(41,'2018_08_03_084130_create_project_implementers_table',1),(42,'2018_08_03_092952_create_outcomes_table',1),(43,'2018_08_03_123232_create_project_frequencies_table',1),(44,'2018_08_03_144511_create_statuses_table',1),(45,'2018_08_05_185602_create_outputs_table',2),(47,'2018_08_06_173627_create_outcome_indicators_table',4),(48,'2018_08_07_080827_create_output_indicators_table',5),(49,'2018_08_10_082327_create_time_plans_table',6),(50,'2018_08_15_132248_create_data_types_table',7),(51,'2018_08_15_132534_create_measuring_units_table',8),(52,'2018_08_15_185722_create_activities_table',9),(53,'2018_08_15_192046_create_activity_budgets_table',10),(54,'2018_08_15_192111_create_activity_categories_table',11),(55,'2018_08_16_100000_create_indicators_table',12),(56,'2018_08_16_142605_create_disaggregation_methods_table',13),(57,'2018_08_16_142729_create_indicator_disaggregation_methods_table',14),(58,'2018_08_16_142946_create_indicator_forms_table',15),(59,'2018_08_17_223225_create_activity_indicators_table',16);
+INSERT INTO `migrations` VALUES (23,'2014_10_12_000000_create_users_table',1),(24,'2014_10_12_100000_create_password_resets_table',1),(25,'2018_07_29_143820_create_program_categories_table',1),(26,'2018_07_29_150330_create_programs_table',1),(27,'2018_07_29_153504_create_project_categories_table',1),(28,'2018_07_29_154248_create_projects_table',1),(29,'2018_07_29_231032_create_program_details_table',1),(30,'2018_07_31_155403_create_project_details_table',1),(31,'2018_07_31_155648_create_implementers_table',1),(32,'2018_07_31_155855_create_beneficiaries_table',1),(33,'2018_07_31_160433_create_clusters_table',1),(34,'2018_07_31_160717_create_cluster_members_table',1),(35,'2018_07_31_162115_create_regions_table',1),(36,'2018_07_31_162152_create_zones_table',1),(37,'2018_07_31_162338_create_woredas_table',1),(38,'2018_08_01_183524_create_kebeles_table',1),(39,'2018_08_02_192122_create_frequencies_table',1),(40,'2018_08_03_084016_create_project_beneficiaries_table',1),(41,'2018_08_03_084130_create_project_implementers_table',1),(42,'2018_08_03_092952_create_outcomes_table',1),(43,'2018_08_03_123232_create_project_frequencies_table',1),(44,'2018_08_03_144511_create_statuses_table',1),(45,'2018_08_05_185602_create_outputs_table',2),(47,'2018_08_06_173627_create_outcome_indicators_table',4),(48,'2018_08_07_080827_create_output_indicators_table',5),(49,'2018_08_10_082327_create_time_plans_table',6),(50,'2018_08_15_132248_create_data_types_table',7),(51,'2018_08_15_132534_create_measuring_units_table',8),(52,'2018_08_15_185722_create_activities_table',9),(53,'2018_08_15_192046_create_activity_budgets_table',10),(54,'2018_08_15_192111_create_activity_categories_table',11),(55,'2018_08_16_100000_create_indicators_table',12),(56,'2018_08_16_142605_create_disaggregation_methods_table',13),(57,'2018_08_16_142729_create_indicator_disaggregation_methods_table',14),(58,'2018_08_16_142946_create_indicator_forms_table',15),(59,'2018_08_17_223225_create_activity_indicators_table',16),(60,'2018_08_24_165018_create_budgets_table',17),(61,'2018_08_25_210056_create_expenditure_categories_table',18),(62,'2018_08_25_210241_create_expenditures_table',19);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1081,4 +1166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-18  0:44:55
+-- Dump completed on 2018-08-25 23:23:44

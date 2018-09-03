@@ -6,19 +6,18 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Expenditure
+ * Class Finance
  * @package App\Models
- * @version August 25, 2018, 9:02 pm UTC
+ * @version August 28, 2018, 6:35 pm UTC
  *
- * @property integer expenditure_category_id
- * @property string name
- * @property double amount
+ * @property integer project_id
+ * @property integer frequency_id
  */
-class Expenditure extends Model
+class Finance extends Model
 {
     use SoftDeletes;
 
-    public $table = 'expenditures';
+    public $table = 'finances';
     
 
     protected $dates = ['deleted_at'];
@@ -26,8 +25,7 @@ class Expenditure extends Model
 
     public $fillable = [
         'project_id',
-        'expenditure_category_id',
-        'name'
+        'frequency_id'
     ];
 
     /**
@@ -37,8 +35,7 @@ class Expenditure extends Model
      */
     protected $casts = [
         'project_id' => 'integer',
-        'expenditure_category_id' => 'integer',
-        'name' => 'string'
+        'frequency_id' => 'integer'
     ];
 
     /**
@@ -48,8 +45,7 @@ class Expenditure extends Model
      */
     public static $rules = [
         'project_id' => 'required',
-        'expenditure_category_id' => 'required',
-        'name' => 'required'
+        'frequency_id' => 'required'
     ];
 
     

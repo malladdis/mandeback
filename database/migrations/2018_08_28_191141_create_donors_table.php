@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateExpendituresTable extends Migration
+class CreateDonorsTable extends Migration
 {
 
     /**
@@ -13,10 +13,11 @@ class CreateExpendituresTable extends Migration
      */
     public function up()
     {
-        Schema::create('expenditures', function (Blueprint $table) {
+        Schema::create('donors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('expenditure_category_id');
             $table->string('name');
+            $table->text('contact');
+            $table->string('status')->default('active');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ class CreateExpendituresTable extends Migration
      */
     public function down()
     {
-        Schema::drop('expenditures');
+        Schema::drop('donors');
     }
 }

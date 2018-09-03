@@ -23,7 +23,7 @@ class RolePermissionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -44,7 +44,7 @@ class RolePermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RolePermission  $rolePermission
+     * @param $role_id
      * @return \Illuminate\Http\Response
      */
     public function show($role_id)

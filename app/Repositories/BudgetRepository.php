@@ -20,6 +20,7 @@ class BudgetRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'name',
         'amount',
         'currency_id',
         'donor_id'
