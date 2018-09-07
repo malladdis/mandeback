@@ -27,7 +27,7 @@ class IndicatorForm extends Model
         'indicator_id',
         'form_id',
         'calculation_method_id',
-        'value_field_tobe_calculated'
+        'disaggregation'
     ];
 
     /**
@@ -39,7 +39,7 @@ class IndicatorForm extends Model
         'indicator_id' => 'integer',
         'form_id' => 'integer',
         'calculation_method_id'=>'integer',
-        'value_field_tobe_calculated'=>'string'
+        'disaggregation'=>'string'
     ];
 
     /**
@@ -51,7 +51,7 @@ class IndicatorForm extends Model
         'indicator_id' => 'required',
         'form_id' => 'required',
         'calculation_method_id'=>'required',
-        'value_field_tobe_calculated'=>'required'
+        'disaggregation'=>'required'
     ];
 
     

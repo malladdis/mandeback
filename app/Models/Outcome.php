@@ -58,5 +58,7 @@ class Outcome extends Model
         'parent_id' => 'required'
     ];
 
-    
+    public function outputs(){
+        return $this->hasMany(Output::class);
+    }
 }

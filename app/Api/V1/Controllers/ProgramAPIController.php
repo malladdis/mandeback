@@ -39,7 +39,7 @@ class ProgramAPIController extends AppBaseController
     {
         $this->programRepository->pushCriteria(new RequestCriteria($request));
         $this->programRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $programs = $this->programRepository->with(['program_detail'])->get();
+        $programs = $this->programRepository->with(['program_detail','project'])->get();
 
         return $this->sendResponse($programs->toArray(), 'Programs retrieved successfully');
     }
@@ -72,7 +72,7 @@ class ProgramAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Program $program */
-        $program = $this->programRepository->with(['program_detail'])->get();
+        $program = $this->programRepository->with(['program_detail','project'])->get();
 
         if (empty($program)) {
             return $this->sendError('Program not found');

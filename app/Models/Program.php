@@ -54,5 +54,12 @@ class Program extends Model
     public function program_detail() {
         return $this->hasOne(ProgramDetail::class);
     }
+
+    public function project(){
+        return $this->hasMany(Project::class);
+    }
+    public function category(){
+        return $this->belongsTo(ProgramCategory::class);
+    }
     
 }

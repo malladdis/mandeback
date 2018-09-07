@@ -58,5 +58,8 @@ class Output extends Model
         'parent_id' => 'required'
     ];
 
+    public function outcome(){
+        return $this->belongsTo(Outcome::class);
+    }
     
 }

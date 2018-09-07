@@ -18,7 +18,7 @@ class CreateIndicatorFormsTable extends Migration
             $table->integer('indicator_id');
             $table->integer('form_id');
             $table->integer('calculation_method_id');
-            $table->string('value_field_tobe_calculated');
+            $table->string('disaggregation');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -51,7 +51,12 @@ class CalculationMethodController extends Controller
      */
     public function show($id)
     {
-        //
+        $calculationtion=CalculationMethod::find($id);
+        if($calculationtion){
+            return response()->json(['status'=>true,'message'=>'data is retrieved successfully','data'=>$calculationtion]);
+        }else{
+            return response()->json(['status'=>false,'message'=>'data is not found','data'=>array()]);
+        }
     }
 
     /**
