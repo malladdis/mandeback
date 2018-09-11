@@ -54,11 +54,15 @@ class FinancePlanAPIController extends AppBaseController
      */
     public function store(CreateFinancePlanAPIRequest $request)
     {
-        $input = $request->all();
-
-        $financePlans = $this->financePlanRepository->create($input);
-
-        return $this->sendResponse($financePlans->toArray(), 'Finance Plan saved successfully');
+        $financePlans = [];
+        foreach ($request->plans as $plan){
+            $this->financePlanRepository->create([
+                'finance_id' => $request->finance_id,
+                'name' => $plan['name'],
+                'value' => $plan['value']
+            ]);
+        }
+        return $this->sendResponse($financePlans, 'Finance Plans saved successfully');
     }
 
     /**

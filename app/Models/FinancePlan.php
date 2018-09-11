@@ -48,8 +48,7 @@ class FinancePlan extends Model
      */
     public static $rules = [
         'finance_id' => 'required',
-        'name' => 'required',
-        'value' => 'required'
+        'plans' => 'required',
     ];
 
     
