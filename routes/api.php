@@ -68,15 +68,19 @@ $api->version('v1', function (Router $api) {
         //meseret's routing
         $api->resource('users','App\\Api\\V1\\Controllers\\UserController');
         $api->resource('forms','App\\Api\\V1\\Controllers\\FormController');
-        $api->resource('form-sections','App\\Api\\V1\\Controllers\\FormSectionController');
-        $api->resource('generated-forms','App\\Api\\V1\\Controllers\\GeneratedFormController');
-        $api->resource('form-columns','App\\Api\\V1\\Controllers\\FormsColumnController');
-        $api->resource('form-datas','App\\Api\\V1\\Controllers\\FormsDataController');
-        $api->resource('shared-forms','App\\Api\\V1\\Controllers\\SharedFormController');
+        $api->resource('form_sections','App\\Api\\V1\\Controllers\\FormSectionController');
+        $api->resource('generated_forms','App\\Api\\V1\\Controllers\\GeneratedFormController');
+        $api->resource('form_columns','App\\Api\\V1\\Controllers\\FormsColumnController');
+        $api->resource('form_datas','App\\Api\\V1\\Controllers\\FormsDataController');
+        $api->resource('shared_forms','App\\Api\\V1\\Controllers\\SharedFormController');
         $api->resource('roles','App\\Api\\V1\\Controllers\\RoleController');
-        $api->resource('role-permissions','App\\Api\\V1\\Controllers\\RolePermissionController');
+        $api->resource('role_permissions','App\\Api\\V1\\Controllers\\RolePermissionController');
         $api->resource('models','App\\Api\\V1\\Controllers\\ModelsController');
         $api->resource('permissions','App\\Api\\V1\\Controllers\\PermissionController');
+        $api->resource('calculation_methods','App\\Api\\V1\\Controllers\\CalculationMethodController');
+        $api->resource('indicator_calculation_methods','App\\Api\\V1\\Controllers\\IndicatorCalculationMethodController');
+        $api->resource('data_entries','App\\Api\\V1\\Controllers\\DataEntryController');
+        $api->resource('current','App\\Api\\V1\\Controllers\\DatePeriodGeneratorController');
         /* $api->group(['middleware'=>'permission'],function (Router $api){
             $api->resource('role','App\\Api\\V1\\Controllers\\RoleController');
             $api->resource('role-permission','App\\Api\\V1\\Controllers\\RolePermissionController');

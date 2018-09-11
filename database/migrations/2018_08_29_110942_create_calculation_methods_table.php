@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateMeasuringUnitsTable extends Migration
+class CreateCalculationMethodsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,12 +13,10 @@ class CreateMeasuringUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('measuring_units', function (Blueprint $table) {
+        Schema::create('calculation_methods', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('symbol');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +27,6 @@ class CreateMeasuringUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('measuring_units');
+        Schema::dropIfExists('calculation_methods');
     }
 }

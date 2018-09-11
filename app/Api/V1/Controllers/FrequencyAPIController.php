@@ -72,7 +72,7 @@ class FrequencyAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Frequency $frequency */
-        $frequency = $this->frequencyRepository->findWithoutFail($id);
+        $frequency = Frequency::where('id',$id)->with('indicator')->get();
 
         if (empty($frequency)) {
             return $this->sendError('Frequency not found');

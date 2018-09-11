@@ -72,7 +72,7 @@ class IndicatorFormAPIController extends AppBaseController
     public function show($id)
     {
         /** @var IndicatorForm $indicatorForm */
-        $indicatorForm = $this->indicatorFormRepository->findWithoutFail($id);
+        $indicatorForm = IndicatorForm::where('indicator_id',$id)->get();
 
         if (empty($indicatorForm)) {
             return $this->sendError('Indicator Form not found');

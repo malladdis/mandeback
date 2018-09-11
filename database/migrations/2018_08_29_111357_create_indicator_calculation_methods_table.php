@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateIndicatorFormsTable extends Migration
+class CreateIndicatorCalculationMethodsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,14 +13,11 @@ class CreateIndicatorFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('indicator_forms', function (Blueprint $table) {
+        Schema::create('indicator_calculation_methods', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('indicator_id');
-            $table->integer('form_id');
             $table->integer('calculation_method_id');
-            $table->string('disaggregation');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +28,6 @@ class CreateIndicatorFormsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('indicator_forms');
+        Schema::dropIfExists('indicator_calculation_methods');
     }
 }

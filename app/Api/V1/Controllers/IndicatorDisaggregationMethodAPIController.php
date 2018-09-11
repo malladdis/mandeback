@@ -72,7 +72,9 @@ class IndicatorDisaggregationMethodAPIController extends AppBaseController
     public function show($id)
     {
         /** @var IndicatorDisaggregationMethod $indicatorDisaggregationMethod */
-        $indicatorDisaggregationMethod = $this->indicatorDisaggregationMethodRepository->findWithoutFail($id);
+        $indicatorDisaggregationMethod = IndicatorDisaggregationMethod::where('indicator_id',$id)
+                                         ->join('disaggregation_methods','disaggregation_methods.id','indicator_disaggregation_methods.disaggregation_method_id')
+                                         ->get();
 
         if (empty($indicatorDisaggregationMethod)) {
             return $this->sendError('Indicator Disaggregation Method not found');
