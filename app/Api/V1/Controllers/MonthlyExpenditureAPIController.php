@@ -48,17 +48,17 @@ class MonthlyExpenditureAPIController extends AppBaseController
      * Store a newly created MonthlyExpenditure in storage.
      * POST /monthlyExpenditures
      *
-     * @param CreateMonthlyExpenditureAPIRequest $request
+     * @param Request $request
      *
      * @return Response
      */
-    public function store(CreateMonthlyExpenditureAPIRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
+        for ($i=0; $i < $request->length; $i++ ) {
+            MonthlyExpenditure::updateOrCreate($request->body[$i]);
+        }
 
-        $monthlyExpenditures = $this->monthlyExpenditureRepository->create($input);
-
-        return $this->sendResponse($monthlyExpenditures->toArray(), 'Monthly Expenditure saved successfully');
+        return response()->json(["message" => 'Monthly Expenditure saved successfully']);
     }
 
     /**
@@ -126,5 +126,9 @@ class MonthlyExpenditureAPIController extends AppBaseController
         $monthlyExpenditure->delete();
 
         return $this->sendResponse($id, 'Monthly Expenditure deleted successfully');
+    }
+
+    public function getMonthlyExpenditureByFinancePlan($finance_plan_id) {
+        return $this->sendResponse(MonthlyExpenditure::where('finance_plan_id', $finance_plan_id)->get(), 'Monthly Expenditures retrieved successfully');
     }
 }

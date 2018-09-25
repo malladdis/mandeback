@@ -50,8 +50,8 @@ class ProjectDetail extends Model
         'objective' => 'string',
         'mng_1' => 'integer',
         'mng_2' => 'integer',
-        'starting_date' => 'integer',
-        'ending_date' => 'integer'
+        'starting_date' => 'string',
+        'ending_date' => 'string'
     ];
 
     /**

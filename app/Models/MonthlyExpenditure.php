@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property integer finance_plan_id
  * @property integer expenditure_id
- * @property string starting_month
  * @property string values
  */
 class MonthlyExpenditure extends Model
@@ -28,7 +27,6 @@ class MonthlyExpenditure extends Model
     public $fillable = [
         'finance_plan_id',
         'expenditure_id',
-        'starting_month',
         'values'
     ];
 
@@ -40,7 +38,6 @@ class MonthlyExpenditure extends Model
     protected $casts = [
         'finance_plan_id' => 'integer',
         'expenditure_id' => 'integer',
-        'starting_month' => 'string',
         'values' => 'string'
     ];
 
@@ -52,7 +49,6 @@ class MonthlyExpenditure extends Model
     public static $rules = [
         'finance_plan_id' => 'required',
         'expenditure_id' => 'required',
-        'starting_month' => 'required',
         'values' => 'required'
     ];
 

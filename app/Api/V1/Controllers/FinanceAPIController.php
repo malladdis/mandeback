@@ -4,6 +4,7 @@ namespace App\Api\V1\Controllers;
 
 use App\Http\Requests\API\CreateFinanceAPIRequest;
 use App\Http\Requests\API\UpdateFinanceAPIRequest;
+use App\Http\Resources\FinanceResource;
 use App\Models\Finance;
 use App\Repositories\FinanceRepository;
 use Illuminate\Http\Request;
@@ -137,7 +138,7 @@ class FinanceAPIController extends AppBaseController
      */
     public function getFinanceByProject($id)
     {
-        $finance = Finance::where('project_id', $id)->get();
+        $finance = new FinanceResource(Finance::where('project_id', $id)->get()[0]);
         return $this->sendResponse($finance, 'Finance retrieved successfully');
     }
 }

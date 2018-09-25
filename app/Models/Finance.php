@@ -48,5 +48,8 @@ class Finance extends Model
         'frequency_id' => 'required'
     ];
 
+    public function plans() {
+        return $this->hasMany(FinancePlan::class);
+    }
     
 }

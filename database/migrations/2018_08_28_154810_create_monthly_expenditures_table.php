@@ -17,7 +17,6 @@ class CreateMonthlyExpendituresTable extends Migration
             $table->increments('id');
             $table->integer('finance_plan_id');
             $table->integer('expenditure_id');
-            $table->string('starting_month');
             $table->text('values');
             $table->timestamps();
             $table->softDeletes();
