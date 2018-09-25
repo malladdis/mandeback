@@ -6,8 +6,8 @@ use App\Http\Requests\API\CreateIndicatorDisaggregationMethodAPIRequest;
 use App\Http\Requests\API\UpdateIndicatorDisaggregationMethodAPIRequest;
 use App\Models\IndicatorDisaggregationMethod;
 use App\Repositories\IndicatorDisaggregationMethodRepository;
-use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Dingo\Api\Http\Request;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -92,20 +92,22 @@ class IndicatorDisaggregationMethodAPIController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateIndicatorDisaggregationMethodAPIRequest $request)
+    public function update($id, Request $request)
     {
-        $input = $request->all();
+        $indicatorDisaggregation=IndicatorDisaggregationMethod::where('indicator_id',$request->indicator_id)->get();
+        if(count($indicatorDisaggregation)>0){
+            $indicatorDis=IndicatorDisaggregationMethod::find($indicatorDisaggregation[0]['id']);
+            $indicatorDis->indicator_id=$request->indicator_id;
+            $indicatorDis->disaggregation_method_id=$request->disaggregation_method_id;
+            if($indicatorDis->save()){
+                return response()->json(['status'=>true,'message'=>'updated Succesffuly','data'=>$indicatorDis]);
+            }
 
-        /** @var IndicatorDisaggregationMethod $indicatorDisaggregationMethod */
-        $indicatorDisaggregationMethod = $this->indicatorDisaggregationMethodRepository->findWithoutFail($id);
-
-        if (empty($indicatorDisaggregationMethod)) {
-            return $this->sendError('Indicator Disaggregation Method not found');
+        }else{
+            return response()->json(['status'=>false,'message'=>'data is not found','data'=>''],404);
         }
 
-        $indicatorDisaggregationMethod = $this->indicatorDisaggregationMethodRepository->update($input, $id);
 
-        return $this->sendResponse($indicatorDisaggregationMethod->toArray(), 'IndicatorDisaggregationMethod updated successfully');
     }
 
     /**

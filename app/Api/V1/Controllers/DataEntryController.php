@@ -42,13 +42,13 @@ class DataEntryController extends Controller
             $dataEntry=new DataEntry();
             $dataEntry->indicator_id=$request->indicator_id;
             $dataEntry->frequency_symbol=$request->frequency_symbol;
-            $dataEntry->actual_value=$request->actual_value;
+            $dataEntry->total=$request->actual_value;
             $dataEntry->save();
             return response()->json(['status'=>true,'message'=>'data is saved successfully','data'=>$dataEntry]);
         }else{
          $updateData=DataEntry::find($previusdataEntry[0]['id']);
-         $newActualValue=$updateData['actual_value']+$request->actual_value;
-         $updateData->actual_value=$newActualValue;
+         $newActualValue=$updateData['total']+$request->actual_value;
+         $updateData->total=$newActualValue;
          $updateData->save();
          return response()->json(['status'=>true,'message'=>'data is retrieved successfully','data'=>$updateData]);
         }
@@ -63,7 +63,7 @@ class DataEntryController extends Controller
     public function show($id)
     {
 
-        $dateEntry= DataEntry::where('indicator_id',$id)->get();
+        $dateEntry= DataEntry::where('indicator_id',$id)->with('disaggregation')->get();
         if($dateEntry){
             return response()->json(['status'=>true,'message'=>'data retrieved successfully','data'=>$dateEntry]);
 

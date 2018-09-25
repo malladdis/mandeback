@@ -25,9 +25,7 @@ class IndicatorForm extends Model
 
     public $fillable = [
         'indicator_id',
-        'form_id',
-        'calculation_method_id',
-        'disaggregation'
+        'form_id'
     ];
 
     /**
@@ -37,9 +35,7 @@ class IndicatorForm extends Model
      */
     protected $casts = [
         'indicator_id' => 'integer',
-        'form_id' => 'integer',
-        'calculation_method_id'=>'integer',
-        'disaggregation'=>'string'
+        'form_id' => 'integer'
     ];
 
     /**
@@ -49,9 +45,7 @@ class IndicatorForm extends Model
      */
     public static $rules = [
         'indicator_id' => 'required',
-        'form_id' => 'required',
-        'calculation_method_id'=>'required',
-        'disaggregation'=>'required'
+        'form_id' => 'required'
     ];
 
     

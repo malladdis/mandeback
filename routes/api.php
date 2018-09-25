@@ -80,6 +80,7 @@ $api->version('v1', function (Router $api) {
         $api->resource('indicator_calculation_methods','App\\Api\\V1\\Controllers\\IndicatorCalculationMethodController');
         $api->resource('data_entries','App\\Api\\V1\\Controllers\\DataEntryController');
         $api->resource('current','App\\Api\\V1\\Controllers\\DatePeriodGeneratorController');
+        $api->resource('data_entry_disaggregation','App\\Api\\V1\\Controllers\\DataEntryDisaggregationController');
         /* $api->group(['middleware'=>'permission'],function (Router $api){
             $api->resource('role','App\\Api\\V1\\Controllers\\RoleController');
             $api->resource('role-permission','App\\Api\\V1\\Controllers\\RolePermissionController');

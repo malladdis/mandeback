@@ -81,9 +81,20 @@ class IndicatorCalculationMethodController extends Controller
      * @param  \App\IndicatorCalculationMethod  $indicatorCalculationMethod
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, IndicatorCalculationMethod $indicatorCalculationMethod)
+    public function update(Request $request)
     {
-        //
+        $indicatorCalculationMethod=IndicatorCalculationMethod::where('indicator_id',$request->indicator_id)->get();
+        if(count($indicatorCalculationMethod)>0){
+            $indicalc=IndicatorCalculationMethod::find($indicatorCalculationMethod[0]['id']);
+            $indicalc->indicator_id=$request->indicator_id;
+            $indicalc->calculation_method_id=$request->calculation_method_id;
+            if($indicalc->save()){
+                return response()->json(['status'=>true,'message'=>'updated Succesffuly','data'=>$indicalc]);
+            }
+
+        }else{
+            return response()->json(['status'=>false,'message'=>'data is not found','data'=>''],404);
+        }
     }
 
     /**
