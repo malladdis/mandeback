@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDataEntriesTable extends Migration
+class CreateDataEntryDisaggregationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateDataEntriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_entries', function (Blueprint $table) {
+        Schema::create('data_entry_disaggregations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('indicator_id');
-            $table->string("frequency_symbol");
-            $table->string('total');
+            $table->integer("data_entry_id");
+            $table->string('disaggregation_attribute');
+            $table->integer('value');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateDataEntriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_entries');
+        Schema::dropIfExists('data_entry_disaggregations');
     }
 }

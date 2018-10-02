@@ -75,10 +75,11 @@ class IndicatorFormAPIController extends AppBaseController
         $indicatorForm = IndicatorForm::where('indicator_id',$id)->get();
 
         if (empty($indicatorForm)) {
-            return $this->sendError('Indicator Form not found');
+            return response()->json(['status'=>false,'message'=>'data is retrieved','data'=>$indicatorForm]);
         }
+        return response()->json(['status'=>true,'message'=>'data is retrieved','data'=>$indicatorForm]);
 
-        return $this->sendResponse($indicatorForm->toArray(), 'Indicator Form retrieved successfully');
+
     }
 
     /**
@@ -90,20 +91,20 @@ class IndicatorFormAPIController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateIndicatorFormAPIRequest $request)
+    public function update($id, \Dingo\Api\Http\Request $request)
     {
-        $input = $request->all();
+        $indicatorForm=IndicatorForm::where('indicator_id',$request->indicator_id)->get();
+        if(count($indicatorForm)>0){
+            $indicator=IndicatorForm::find($indicatorForm[0]['id']);
+            $indicator->indicator_id=$request->indicator_id;
+            $indicator->form_id=$request->form_id;
+            if($indicator->save()){
+                return response()->json(['status'=>true,'message'=>'updated Succesffuly','data'=>$indicator]);
+            }
 
-        /** @var IndicatorForm $indicatorForm */
-        $indicatorForm = $this->indicatorFormRepository->findWithoutFail($id);
-
-        if (empty($indicatorForm)) {
-            return $this->sendError('Indicator Form not found');
+        }else{
+            return response()->json(['status'=>false,'message'=>'data is not found','data'=>''],404);
         }
-
-        $indicatorForm = $this->indicatorFormRepository->update($input, $id);
-
-        return $this->sendResponse($indicatorForm->toArray(), 'IndicatorForm updated successfully');
     }
 
     /**

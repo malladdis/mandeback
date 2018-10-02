@@ -11,4 +11,8 @@ class DataEntry extends Model
     public function indicator(){
         return $this->belongsTo(Indicator::class);
     }
+
+    public function disaggregation(){
+        return $this->hasMany('App\Models\DataEntryDisaggregation','data_entry_id');
+    }
 }
