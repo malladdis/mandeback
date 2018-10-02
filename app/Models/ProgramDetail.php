@@ -29,6 +29,7 @@ class ProgramDetail extends Model
         'program_id',
         'country',
         'budget',
+        'currency_id',
         'starting_date',
         'ending_date'
     ];
@@ -41,7 +42,8 @@ class ProgramDetail extends Model
     protected $casts = [
         'program_id' => 'integer',
         'country' => 'string',
-        'budget' => 'float',
+        'budget' => 'string',
+        'currency_id' => 'string',
         'starting_date' => 'string',
         'ending_date' => 'string'
     ];
@@ -55,6 +57,7 @@ class ProgramDetail extends Model
         'program_id' => 'required',
         'country' => 'required',
         'budget' => 'required',
+        'currency_id' => 'required',
         'starting_date' => 'required',
         'ending_date' => 'required'
     ];

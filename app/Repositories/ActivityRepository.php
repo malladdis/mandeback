@@ -25,6 +25,8 @@ class ActivityRepository extends BaseRepository
         'description',
         'status_id',
         'activity_category_id',
+        'baseline',
+        'target',
         'kebele_id',
         'start_date',
         'end_date',

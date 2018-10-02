@@ -138,7 +138,11 @@ class FinanceAPIController extends AppBaseController
      */
     public function getFinanceByProject($id)
     {
-        $finance = new FinanceResource(Finance::where('project_id', $id)->get()[0]);
+        $f = Finance::where('project_id', $id)->get()->count() > 0 ? Finance::where('project_id', $id)->get()[0] : 0;
+        $finance = '';
+        if($f) {
+            $finance =  new FinanceResource($f);
+        }
         return $this->sendResponse($finance, 'Finance retrieved successfully');
     }
 }

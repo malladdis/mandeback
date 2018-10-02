@@ -26,6 +26,7 @@ class Expenditure extends Model
 
     public $fillable = [
         'project_id',
+        'finance_plan_id',
         'expenditure_category_id',
         'name'
     ];
@@ -37,6 +38,7 @@ class Expenditure extends Model
      */
     protected $casts = [
         'project_id' => 'integer',
+        'finance_plan_id' => 'integer',
         'expenditure_category_id' => 'integer',
         'name' => 'string'
     ];
@@ -48,6 +50,7 @@ class Expenditure extends Model
      */
     public static $rules = [
         'project_id' => 'required',
+        'finance_plan_id' => 'required',
         'expenditure_category_id' => 'required',
         'name' => 'required'
     ];

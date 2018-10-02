@@ -4,6 +4,7 @@ namespace App\Api\V1\Controllers;
 
 use App\Http\Requests\API\CreateProgramCategoryAPIRequest;
 use App\Http\Requests\API\UpdateProgramCategoryAPIRequest;
+use App\Http\Resources\ProgramCategoryResource;
 use App\Models\ProgramCategory;
 use App\Repositories\ProgramCategoryRepository;
 use Illuminate\Http\Request;
@@ -39,9 +40,9 @@ class ProgramCategoryAPIController extends AppBaseController
     {
         $this->programCategoryRepository->pushCriteria(new RequestCriteria($request));
         $this->programCategoryRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $programCategories = $this->programCategoryRepository->with(['programs'])->get();
+        $programCategories = ProgramCategoryResource::collection(ProgramCategory::all());
 
-        return $this->sendResponse($programCategories->toArray(), 'Program Categories retrieved successfully');
+        return $this->sendResponse($programCategories, 'Program Categories retrieved successfully');
     }
 
     /**

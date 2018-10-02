@@ -19,7 +19,7 @@ class FinanceResource extends Resource
             'id' => $this->id,
             'project_id' => $this->project_id,
             'frequency_id' => $this->frequency_id,
-            'plans' => FinancePlan::where('finance_id', $this->id)->get()
+            'plans' => FinancePlanResource::collection(FinancePlan::where('finance_id', $this->id)->get())
         ];
     }
 }

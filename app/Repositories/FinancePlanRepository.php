@@ -22,7 +22,8 @@ class FinancePlanRepository extends BaseRepository
     protected $fieldSearchable = [
         'finance_id',
         'name',
-        'value'
+        'value',
+        'start'
     ];
 
     /**

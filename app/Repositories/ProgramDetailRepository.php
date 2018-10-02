@@ -23,6 +23,7 @@ class ProgramDetailRepository extends BaseRepository
         'program_id',
         'country',
         'budget',
+        'currency_id',
         'starting_date',
         'ending_date'
     ];

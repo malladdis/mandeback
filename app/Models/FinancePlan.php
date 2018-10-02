@@ -27,7 +27,8 @@ class FinancePlan extends Model
     public $fillable = [
         'finance_id',
         'name',
-        'value'
+        'value',
+        'start'
     ];
 
     /**
@@ -38,7 +39,8 @@ class FinancePlan extends Model
     protected $casts = [
         'finance_id' => 'integer',
         'name' => 'string',
-        'value' => 'double'
+        'value' => 'double',
+        'start' => 'integer'
     ];
 
     /**

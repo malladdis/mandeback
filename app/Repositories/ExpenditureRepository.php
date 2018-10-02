@@ -21,6 +21,7 @@ class ExpenditureRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'project_id',
+        'finance_plan_id',
         'expenditure_category_id',
         'name'
     ];
