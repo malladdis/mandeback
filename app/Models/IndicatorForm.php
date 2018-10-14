@@ -25,7 +25,9 @@ class IndicatorForm extends Model
 
     public $fillable = [
         'indicator_id',
-        'form_id'
+        'form_id',
+        'calculation_method_id',
+        'fields_tobe_calculated'
     ];
 
     /**
@@ -48,5 +50,8 @@ class IndicatorForm extends Model
         'form_id' => 'required'
     ];
 
-    
+    function fields(){
+        return $this->hasMany(IndicatorFieldsTobeCalculated::class,'indicator_form_id');
+    }
+
 }

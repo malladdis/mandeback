@@ -8,6 +8,7 @@ class FormsData extends Model
 {
     //
 
+
     function form(){
         return $this->belongsTo(Form::class);
     }
