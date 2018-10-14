@@ -35,30 +35,33 @@ class FormsDataController extends Controller
      */
     public function store(Request $request)
     {
-        $arrayData=FormsData::where('form_id',$request->form_id)->get();
-        if(count($arrayData)>0){
-            $previusData=$arrayData[0]['data'];
-            $storedData= substr($previusData,0,strpos($previusData,']'));
-            $sentedData=$request->data;
-            $divededSentedData=substr($sentedData,strpos($sentedData,'[')+1,strpos($sentedData,']'));
 
-            $totalData=$storedData.",".$divededSentedData;
 
-            $updateTable=FormsData::find($arrayData[0]['id']);
-            $updateTable->data=$totalData;
-            if($updateTable->save()){
-                return response()->json(['status'=>'ok','message'=>'data is saved successfully','data'=>$updateTable],200);
+            $arrayData = FormsData::where('form_id', $request->form_id)->get();
+            if (count($arrayData) > 0) {
+                $previusData = $arrayData[0]['data'];
+                $storedData = substr($previusData, 0, strpos($previusData, ']'));
+                $sentedData = $request->data;
+                $divededSentedData = substr($sentedData, strpos($sentedData, '[') + 1, strpos($sentedData, ']'));
+
+                $totalData = $storedData . "," . $divededSentedData;
+
+                $updateTable = FormsData::find($arrayData[0]['id']);
+                $updateTable->data = $totalData;
+                if ($updateTable->save()) {
+                    return response()->json(['status' => 'ok', 'message' => 'data is saved successfully', 'data' => $updateTable], 200);
+                }
+            } else {
+                $formData = new FormsData();
+                $formData->form_id = $request->form_id;
+                $formData->data = $request->data;
+                if ($formData->save()) {
+                    return response()->json(['success' => 'ok', 'message' => 'data is save successfully', 'data' => $formData], 200);
+                } else {
+                    return response()->json(['success' => 'ok', 'message' => 'data is not found ):'], 404);
+                }
             }
-        }else{
-            $formData=new FormsData();
-            $formData->form_id=$request->form_id;
-            $formData->data=$request->data;
-            if($formData->save()){
-                return response()->json(['success'=>'ok','message'=>'data is save successfully','data'=>$formData],200);
-            }else {
-                return response()->json(['success' => 'ok', 'message' => 'data is not found ):'], 404);
-            }
-        }
+
 
     }
 

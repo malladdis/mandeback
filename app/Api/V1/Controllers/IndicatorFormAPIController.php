@@ -72,7 +72,7 @@ class IndicatorFormAPIController extends AppBaseController
     public function show($id)
     {
         /** @var IndicatorForm $indicatorForm */
-        $indicatorForm = IndicatorForm::where('indicator_id',$id)->get();
+        $indicatorForm = IndicatorForm::where('indicator_id',$id)->with('fields')->get();
 
         if (empty($indicatorForm)) {
             return response()->json(['status'=>false,'message'=>'data is retrieved','data'=>$indicatorForm]);
@@ -93,11 +93,12 @@ class IndicatorFormAPIController extends AppBaseController
      */
     public function update($id, \Dingo\Api\Http\Request $request)
     {
-        $indicatorForm=IndicatorForm::where('indicator_id',$request->indicator_id)->get();
+        $indicatorForm=IndicatorForm::where('indicator_id',$id)->get();
         if(count($indicatorForm)>0){
             $indicator=IndicatorForm::find($indicatorForm[0]['id']);
             $indicator->indicator_id=$request->indicator_id;
             $indicator->form_id=$request->form_id;
+            $indicator->calculation_method_id=$request->calculation_method_id;
             if($indicator->save()){
                 return response()->json(['status'=>true,'message'=>'updated Succesffuly','data'=>$indicator]);
             }

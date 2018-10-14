@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\SharedForm;
 use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,5 +59,9 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function forms(){
+        return $this->hasMany(SharedForm::class,"user_id");
     }
 }

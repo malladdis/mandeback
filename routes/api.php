@@ -86,6 +86,8 @@ $api->version('v1', function (Router $api) {
         $api->resource('data_entries','App\\Api\\V1\\Controllers\\DataEntryController');
         $api->resource('current','App\\Api\\V1\\Controllers\\DatePeriodGeneratorController');
         $api->resource('data_entry_disaggregation','App\\Api\\V1\\Controllers\\DataEntryDisaggregationController');
+        $api->resource('indicator_form_fields','App\\Api\\V1\\Controllers\\IndicatorFieldsTobeCalculatedController');
+
         /* $api->group(['middleware'=>'permission'],function (Router $api){
             $api->resource('role','App\\Api\\V1\\Controllers\\RoleController');
             $api->resource('role-permission','App\\Api\\V1\\Controllers\\RolePermissionController');
@@ -102,8 +104,7 @@ $api->version('v1', function (Router $api) {
             ]);
         });
     });
-
-    $api->resource('form-data-file','App\\Api\\V1\\Controllers\\FormDataFileController');
+    $api->resource('form_data_files','App\\Api\\V1\\Controllers\\FormDataFileController');
     $api->resource('outer','App\\Api\\V1\\Controllers\\OuterDocumentController');
 
 });
