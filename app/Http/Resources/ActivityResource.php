@@ -30,6 +30,7 @@ class ActivityResource extends Resource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'status' => Status::where('id', $this->status_id)->get(),
+            'featured' => $this->featured,
             'category' => ActivityCategory::where('id', $this->activity_category_id)->get(),
             'kebele' => Kebele::where('id', $this->kebele_id)->get(),
             'start_date' => $this->start_date,

@@ -87,11 +87,11 @@ class ActivityAPIController extends AppBaseController
      * PUT/PATCH /activities/{id}
      *
      * @param  int $id
-     * @param UpdateActivityAPIRequest $request
+     * @param Request $request
      *
      * @return Response
      */
-    public function update($id, UpdateActivityAPIRequest $request)
+    public function update(Request $request, $id)
     {
         $input = $request->all();
 

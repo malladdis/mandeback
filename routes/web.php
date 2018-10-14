@@ -17,11 +17,9 @@ Route::get('reset_password/{token}', ['as' => 'password.reset', function($token)
 }]);
 
 Route::get('/', function () {
-    return Redirect::to('http://localhost:4200');
+    return Redirect::to('https://vitamande.org');
 });
 
-
-Route::resource('migration]s', 'migration]Controller');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

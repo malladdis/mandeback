@@ -23,6 +23,7 @@ class ActivityRepository extends BaseRepository
         'name',
         'output_id',
         'description',
+        'featured',
         'status_id',
         'activity_category_id',
         'baseline',

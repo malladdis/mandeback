@@ -27,9 +27,12 @@ CREATE TABLE `activities` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `output_id` int(11) NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
+  `featured` tinyint(1) NOT NULL DEFAULT '0',
   `status_id` int(11) NOT NULL,
   `activity_category_id` int(11) NOT NULL,
   `kebele_id` int(11) NOT NULL,
+  `baseline` int(11) NOT NULL,
+  `target` int(11) NOT NULL,
   `start_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `end_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `implementing_partners` text COLLATE utf8_unicode_ci NOT NULL,
@@ -38,7 +41,7 @@ CREATE TABLE `activities` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +50,7 @@ CREATE TABLE `activities` (
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-INSERT INTO `activities` VALUES (1,'1.Strengthened local Institutions (FTCS)',1,NULL,2,1,1,'2018-08-16T23:00:00.000Z','2018-08-30T23:00:00.000Z','[{id: 1, name: Vita},{id: 2, name: IDE}]',0,'2018-08-17 20:39:35','2018-08-17 20:39:35',NULL),(2,'1.1 xxxxxxxxxx',1,NULL,2,1,1,'2018-08-16T23:00:00.000Z','2018-08-30T23:00:00.000Z','[{id: 2, name: IDE}]',1,'2018-08-17 21:42:28','2018-08-17 21:42:28',NULL);
+INSERT INTO `activities` VALUES (1,'1.Strengthened local Institutions (FTCS)',1,NULL,1,2,1,1,0,100,'2018-08-16T23:00:00.000Z','2018-08-30T23:00:00.000Z','[{id: 1, name: Vita},{id: 2, name: IDE}]',0,'2018-08-17 20:39:35','2018-10-05 23:15:31',NULL),(2,'1.1 xxxxxxxxxx',1,NULL,0,2,1,1,0,20,'2018-08-16T23:00:00.000Z','2018-08-30T23:00:00.000Z','[{id: 2, name: IDE}]',1,'2018-08-17 21:42:28','2018-10-05 22:16:43',NULL),(3,'xxxx',1,NULL,0,2,1,1,0,200,'2018-10-01 00:00:00','2018-12-31 00:00:00','[{id: 1, name: Vita},{id: 2, name: IDE}]',0,'2018-10-02 14:55:50','2018-10-02 14:55:50',NULL);
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +69,7 @@ CREATE TABLE `activity_budgets` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +78,7 @@ CREATE TABLE `activity_budgets` (
 
 LOCK TABLES `activity_budgets` WRITE;
 /*!40000 ALTER TABLE `activity_budgets` DISABLE KEYS */;
-INSERT INTO `activity_budgets` VALUES (1,1,20000,'2018-08-17 20:39:35','2018-08-17 20:39:35',NULL),(2,2,1000,'2018-08-17 21:42:28','2018-08-17 21:42:28',NULL);
+INSERT INTO `activity_budgets` VALUES (1,1,20000,'2018-08-17 20:39:35','2018-08-17 20:39:35',NULL),(2,2,1000,'2018-08-17 21:42:28','2018-08-17 21:42:28',NULL),(3,3,2000,'2018-10-02 14:55:51','2018-10-02 14:55:51',NULL);
 /*!40000 ALTER TABLE `activity_budgets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,6 +332,33 @@ LOCK TABLES `data_entries` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `data_entry_disaggregations`
+--
+
+DROP TABLE IF EXISTS `data_entry_disaggregations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `data_entry_disaggregations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `data_entry_id` int(11) NOT NULL,
+  `disaggregation_attribute` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `value` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `data_entry_disaggregations`
+--
+
+LOCK TABLES `data_entry_disaggregations` WRITE;
+/*!40000 ALTER TABLE `data_entry_disaggregations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `data_entry_disaggregations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `data_types`
 --
 
@@ -512,7 +542,7 @@ CREATE TABLE `files` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -521,7 +551,7 @@ CREATE TABLE `files` (
 
 LOCK TABLES `files` WRITE;
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
-INSERT INTO `files` VALUES (4,1,'6584522-EckhartTolle-ThePowerOfNow.pdf','pdf','public/mWd2SbNlDhkTbpTHcbpjOVR7BNDCrSzy93MtdE5X.pdf',1,1,NULL,'2018-09-28 18:23:59','2018-09-28 18:23:59',NULL),(5,1,'Algorithms.pdf','pdf','public/KyhDp8GpWuf7RBcSTd70BxcgdkXntH4ahTLr6YG0.pdf',1,1,NULL,'2018-09-28 19:20:59','2018-09-28 19:20:59',NULL),(6,1,'2. Selenium Basics.docx','docx','public/FFI1l3VfKNCj9G1r07Ie62Su4SYuPzlXspzpmzRx.docx',1,1,NULL,'2018-09-29 00:32:30','2018-09-29 00:32:30',NULL);
+INSERT INTO `files` VALUES (4,1,'6584522-EckhartTolle-ThePowerOfNow.pdf','pdf','public/mWd2SbNlDhkTbpTHcbpjOVR7BNDCrSzy93MtdE5X.pdf',1,1,NULL,'2018-09-28 18:23:59','2018-09-28 18:23:59',NULL),(5,1,'Algorithms.pdf','pdf','public/KyhDp8GpWuf7RBcSTd70BxcgdkXntH4ahTLr6YG0.pdf',1,1,NULL,'2018-09-28 19:20:59','2018-09-28 19:20:59',NULL),(6,1,'2. Selenium Basics.docx','docx','public/FFI1l3VfKNCj9G1r07Ie62Su4SYuPzlXspzpmzRx.docx',1,1,NULL,'2018-09-29 00:32:30','2018-09-29 00:32:30',NULL),(7,1,'2. JUnit Basics.pdf','pdf','public/BHlmwBNxsFPXQFK4jZioaNLYAieGYMQcKAp8tkAC.pdf',1,3,NULL,'2018-10-02 15:03:21','2018-10-02 15:03:21',NULL),(8,1,'4_6046327841161741252 (2).pdf','pdf','public/QZIOS8h1xHwjx6kxM5AovaKemgigZPc9F2m7ksv8.pdf',1,1,NULL,'2018-10-03 00:01:29','2018-10-03 00:01:29',NULL),(9,1,'_9989c6c04db884aeffd48815166e5139_1-Data-Binding.pdf','pdf','public/biwn0eFd2XONSYtiyAXhRaeGHb4JawdTXHYdlpj0.pdf',0,21,NULL,'2018-10-14 16:49:17','2018-10-14 16:49:17',NULL);
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -980,7 +1010,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -989,8 +1019,69 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (23,'2014_10_12_000000_create_users_table',1),(24,'2014_10_12_100000_create_password_resets_table',1),(25,'2018_07_29_143820_create_program_categories_table',1),(26,'2018_07_29_150330_create_programs_table',1),(27,'2018_07_29_153504_create_project_categories_table',1),(28,'2018_07_29_154248_create_projects_table',1),(29,'2018_07_29_231032_create_program_details_table',1),(30,'2018_07_31_155403_create_project_details_table',1),(31,'2018_07_31_155648_create_implementers_table',1),(32,'2018_07_31_155855_create_beneficiaries_table',1),(33,'2018_07_31_160433_create_clusters_table',1),(34,'2018_07_31_160717_create_cluster_members_table',1),(35,'2018_07_31_162115_create_regions_table',1),(36,'2018_07_31_162152_create_zones_table',1),(37,'2018_07_31_162338_create_woredas_table',1),(38,'2018_08_01_183524_create_kebeles_table',1),(39,'2018_08_02_192122_create_frequencies_table',1),(40,'2018_08_03_084016_create_project_beneficiaries_table',1),(41,'2018_08_03_084130_create_project_implementers_table',1),(42,'2018_08_03_092952_create_outcomes_table',1),(43,'2018_08_03_123232_create_project_frequencies_table',1),(44,'2018_08_03_144511_create_statuses_table',1),(45,'2018_08_05_185602_create_outputs_table',2),(47,'2018_08_06_173627_create_outcome_indicators_table',4),(48,'2018_08_07_080827_create_output_indicators_table',5),(49,'2018_08_10_082327_create_time_plans_table',6),(50,'2018_08_15_132248_create_data_types_table',7),(51,'2018_08_15_132534_create_measuring_units_table',8),(52,'2018_08_15_185722_create_activities_table',9),(53,'2018_08_15_192046_create_activity_budgets_table',10),(54,'2018_08_15_192111_create_activity_categories_table',11),(55,'2018_08_16_100000_create_indicators_table',12),(56,'2018_08_16_142605_create_disaggregation_methods_table',13),(57,'2018_08_16_142729_create_indicator_disaggregation_methods_table',14),(58,'2018_08_16_142946_create_indicator_forms_table',15),(59,'2018_08_17_223225_create_activity_indicators_table',16),(60,'2018_08_24_165018_create_budgets_table',17),(61,'2018_08_25_210056_create_expenditure_categories_table',18),(62,'2018_08_25_210241_create_expenditures_table',19),(68,'2018_08_28_153702_create_finance_plans_table',20),(69,'2018_08_28_154810_create_monthly_expenditures_table',20),(70,'2018_08_28_183516_create_finances_table',20),(71,'2018_08_28_191141_create_donors_table',21),(72,'2018_08_28_191243_create_currencies_table',22),(73,'2018_08_29_110942_create_calculation_methods_table',23),(74,'2018_08_29_111357_create_indicator_calculation_methods_table',23),(75,'2018_08_30_202816_create_data_entries_table',23),(76,'2018_08_31_125755_create_date_period_generators_table',23),(77,'2018_09_04_201025_create_forms_table',24),(78,'2018_09_05_095748_create_form_sections_table',24),(79,'2018_09_08_102117_create_generated_forms_table',24),(80,'2018_09_08_141507_create_forms_columns_table',24),(81,'2018_09_08_141520_create_forms_datas_table',24),(82,'2018_09_14_110317_create_form_data_files_table',24),(83,'2018_09_16_095628_create_roles_table',24),(84,'2018_09_16_102831_create_shared_forms_table',24),(85,'2018_09_16_154830_create_role_permissions_table',24),(86,'2018_09_18_092641_create_permissions_table',24),(87,'2018_09_20_114421_create_outer_documents_table',24),(89,'2018_09_27_201708_create_files_table',25);
+INSERT INTO `migrations` VALUES (23,'2014_10_12_000000_create_users_table',1),(24,'2014_10_12_100000_create_password_resets_table',1),(25,'2018_07_29_143820_create_program_categories_table',1),(26,'2018_07_29_150330_create_programs_table',1),(27,'2018_07_29_153504_create_project_categories_table',1),(28,'2018_07_29_154248_create_projects_table',1),(29,'2018_07_29_231032_create_program_details_table',1),(30,'2018_07_31_155403_create_project_details_table',1),(31,'2018_07_31_155648_create_implementers_table',1),(32,'2018_07_31_155855_create_beneficiaries_table',1),(33,'2018_07_31_160433_create_clusters_table',1),(34,'2018_07_31_160717_create_cluster_members_table',1),(35,'2018_07_31_162115_create_regions_table',1),(36,'2018_07_31_162152_create_zones_table',1),(37,'2018_07_31_162338_create_woredas_table',1),(38,'2018_08_01_183524_create_kebeles_table',1),(39,'2018_08_02_192122_create_frequencies_table',1),(40,'2018_08_03_084016_create_project_beneficiaries_table',1),(41,'2018_08_03_084130_create_project_implementers_table',1),(42,'2018_08_03_092952_create_outcomes_table',1),(43,'2018_08_03_123232_create_project_frequencies_table',1),(44,'2018_08_03_144511_create_statuses_table',1),(45,'2018_08_05_185602_create_outputs_table',2),(47,'2018_08_06_173627_create_outcome_indicators_table',4),(48,'2018_08_07_080827_create_output_indicators_table',5),(49,'2018_08_10_082327_create_time_plans_table',6),(50,'2018_08_15_132248_create_data_types_table',7),(51,'2018_08_15_132534_create_measuring_units_table',8),(52,'2018_08_15_185722_create_activities_table',9),(53,'2018_08_15_192046_create_activity_budgets_table',10),(54,'2018_08_15_192111_create_activity_categories_table',11),(55,'2018_08_16_100000_create_indicators_table',12),(56,'2018_08_16_142605_create_disaggregation_methods_table',13),(57,'2018_08_16_142729_create_indicator_disaggregation_methods_table',14),(58,'2018_08_16_142946_create_indicator_forms_table',15),(59,'2018_08_17_223225_create_activity_indicators_table',16),(60,'2018_08_24_165018_create_budgets_table',17),(61,'2018_08_25_210056_create_expenditure_categories_table',18),(62,'2018_08_25_210241_create_expenditures_table',19),(68,'2018_08_28_153702_create_finance_plans_table',20),(69,'2018_08_28_154810_create_monthly_expenditures_table',20),(70,'2018_08_28_183516_create_finances_table',20),(71,'2018_08_28_191141_create_donors_table',21),(72,'2018_08_28_191243_create_currencies_table',22),(73,'2018_08_29_110942_create_calculation_methods_table',23),(74,'2018_08_29_111357_create_indicator_calculation_methods_table',23),(75,'2018_08_30_202816_create_data_entries_table',23),(76,'2018_08_31_125755_create_date_period_generators_table',23),(77,'2018_09_04_201025_create_forms_table',24),(78,'2018_09_05_095748_create_form_sections_table',24),(79,'2018_09_08_102117_create_generated_forms_table',24),(80,'2018_09_08_141507_create_forms_columns_table',24),(81,'2018_09_08_141520_create_forms_datas_table',24),(82,'2018_09_14_110317_create_form_data_files_table',24),(83,'2018_09_16_095628_create_roles_table',24),(84,'2018_09_16_102831_create_shared_forms_table',24),(85,'2018_09_16_154830_create_role_permissions_table',24),(86,'2018_09_18_092641_create_permissions_table',24),(87,'2018_09_20_114421_create_outer_documents_table',24),(89,'2018_09_27_201708_create_files_table',25),(90,'2018_10_02_132853_create_milestones_table',26),(91,'2018_10_02_133052_create_milestone_actual_values_table',27),(92,'2018_10_02_134507_create_data_entry_disaggregations_table',28);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `milestone_actual_values`
+--
+
+DROP TABLE IF EXISTS `milestone_actual_values`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `milestone_actual_values` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `milestone_id` int(11) NOT NULL,
+  `value` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `milestone_actual_values`
+--
+
+LOCK TABLES `milestone_actual_values` WRITE;
+/*!40000 ALTER TABLE `milestone_actual_values` DISABLE KEYS */;
+INSERT INTO `milestone_actual_values` VALUES (1,1,35,'2018-10-05 14:46:44','2018-10-05 14:46:44',NULL);
+/*!40000 ALTER TABLE `milestone_actual_values` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `milestones`
+--
+
+DROP TABLE IF EXISTS `milestones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `milestones` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `activity_id` int(11) NOT NULL,
+  `start` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `end` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `baseline` int(11) NOT NULL,
+  `target` int(11) NOT NULL,
+  `budget` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `milestones`
+--
+
+LOCK TABLES `milestones` WRITE;
+/*!40000 ALTER TABLE `milestones` DISABLE KEYS */;
+INSERT INTO `milestones` VALUES (1,'task one',1,'2018-10-01 00:00:00','2018-12-31 00:00:00',0,100,2000,'2018-10-02 21:36:23','2018-10-02 21:36:23',NULL);
+/*!40000 ALTER TABLE `milestones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1663,7 +1754,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1672,7 +1763,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Ezedin Fedlu','ezedin.fedlu@gmail.com','$2y$10$ATfZQIOXlenLj.Awcw0SU.9r1cf.bklaa5kv3osxEaNa9zoKIULEq',NULL,'2018-07-31 12:52:58','2018-07-31 12:53:00');
+INSERT INTO `users` VALUES (1,'Ezedin Fedlu','ezedin.fedlu@gmail.com','$2y$10$ATfZQIOXlenLj.Awcw0SU.9r1cf.bklaa5kv3osxEaNa9zoKIULEq',NULL,'2018-07-31 12:52:58','2018-07-31 12:53:00'),(2,'Ermias Guta','Ermias.Guta@vita.ie','$2y$10$U7wNkSqqlKEJlKI3wZGfYOeD52N6GQnMpHHxLRx1l.6ak/uOkiZbK',NULL,'2018-10-03 01:13:07','2018-10-03 01:13:09');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1741,4 +1832,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-29  4:25:59
+-- Dump completed on 2018-10-14 19:18:13

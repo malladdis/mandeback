@@ -86,11 +86,11 @@ class ProjectAPIController extends AppBaseController
      * PUT/PATCH /projects/{id}
      *
      * @param  int $id
-     * @param UpdateProjectAPIRequest $request
+     * @param Request $request
      *
      * @return Response
      */
-    public function update($id, UpdateProjectAPIRequest $request)
+    public function update($id, Request $request)
     {
         $input = $request->all();
 

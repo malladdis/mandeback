@@ -57,7 +57,8 @@ class Project extends Model
         'program_id' => 'required',
         'project_category_id' => 'required',
         'name' => 'required',
-        'status_id' => 'required'
+        'status_id' => 'required',
+        'featured' => 'required'
     ];
 
     public function details() {
