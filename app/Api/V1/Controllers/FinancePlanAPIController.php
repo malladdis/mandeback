@@ -51,6 +51,7 @@ class FinancePlanAPIController extends AppBaseController
      * @param CreateFinancePlanAPIRequest $request
      *
      * @return Response
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function store(CreateFinancePlanAPIRequest $request)
     {
@@ -59,7 +60,8 @@ class FinancePlanAPIController extends AppBaseController
             $this->financePlanRepository->create([
                 'finance_id' => $request->finance_id,
                 'name' => $plan['name'],
-                'value' => $plan['value']
+                'value' => $plan['value'],
+                'start' => $plan['start']
             ]);
         }
         return $this->sendResponse($financePlans, 'Finance Plans saved successfully');

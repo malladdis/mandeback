@@ -63,7 +63,11 @@ $api->version('v1', function (Router $api) {
         $api->get('project-finance/{id}', 'App\\Api\\V1\\Controllers\\FinanceAPIController@getFinanceByProject');
         $api->resource('donors', 'App\\Api\\V1\\Controllers\\DonorAPIController');
         $api->resource('currencies', 'App\\Api\\V1\\Controllers\\CurrencyAPIController');
+        $api->resource('files', 'App\\Api\\V1\\Controllers\\FileAPIController');
+        $api->resource('milestones', 'App\\Api\\V1\\Controllers\\MilestoneAPIController');
+        $api->resource('milestone_actual_values', 'App\\Api\\V1\\Controllers\\MilestoneActualValueAPIController');
         $api->get('outcome_outputs/{id}', 'App\\Api\\V1\\Controllers\\OutputAPIController@getOutputsByOutcome');
+        $api->get('financial-report/{plans}', 'App\\Api\\V1\\Controllers\\ExpenditureCategoryAPIController@getData');
 
         //meseret's routing
         $api->resource('users','App\\Api\\V1\\Controllers\\UserController');

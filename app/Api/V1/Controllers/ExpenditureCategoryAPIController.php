@@ -4,11 +4,15 @@ namespace App\Api\V1\Controllers;
 
 use App\Http\Requests\API\CreateExpenditureCategoryAPIRequest;
 use App\Http\Requests\API\UpdateExpenditureCategoryAPIRequest;
+use App\Http\Resources\ExpenditureCategoryResource;
+use App\Http\Resources\ExpenditureResource;
+use App\Models\Expenditure;
 use App\Models\ExpenditureCategory;
 use App\Repositories\ExpenditureCategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use phpDocumentor\Reflection\Types\Array_;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -126,5 +130,16 @@ class ExpenditureCategoryAPIController extends AppBaseController
         $expenditureCategory->delete();
 
         return $this->sendResponse($id, 'Expenditure Category deleted successfully');
+    }
+
+    public function getData($plans)
+    {
+       $datas = Array($plans);
+       $p = explode( ',' ,$datas[0]);
+       $data = Array();
+        for($i = 0; $i < sizeof($p); $i++) {
+           array_push($data, ExpenditureResource::collection(Expenditure::where('finance_plan_id', (int)$p[$i])->get()));
+        }
+        return $data;
     }
 }

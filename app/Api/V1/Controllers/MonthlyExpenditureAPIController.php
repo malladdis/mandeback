@@ -55,10 +55,9 @@ class MonthlyExpenditureAPIController extends AppBaseController
     public function store(Request $request)
     {
         for ($i=0; $i < $request->length; $i++ ) {
-            MonthlyExpenditure::updateOrCreate($request->body[$i]);
+            MonthlyExpenditure::updateOrCreate(['finance_plan_id'=>$request->body[$i]['finance_plan_id'], 'expenditure_id'=>$request->body[$i]['expenditure_id']], $request->body[$i]);
         }
-
-        return response()->json(["message" => 'Monthly Expenditure saved successfully']);
+        return response()->json(["message" => 'Monthly Expenditures saved successfully']);
     }
 
     /**
@@ -130,5 +129,9 @@ class MonthlyExpenditureAPIController extends AppBaseController
 
     public function getMonthlyExpenditureByFinancePlan($finance_plan_id) {
         return $this->sendResponse(MonthlyExpenditure::where('finance_plan_id', $finance_plan_id)->get(), 'Monthly Expenditures retrieved successfully');
+    }
+
+    public function upload(Request $request) {
+        //return
     }
 }
